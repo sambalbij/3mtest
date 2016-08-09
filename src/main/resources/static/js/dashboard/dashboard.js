@@ -35,7 +35,6 @@
         vm.obtain_events = obtain_events;
         vm.create_event = create_event;
 
-        vm.welcome = "Hello to you from the Angular world!";
         vm.events = [];
         vm.newEvent = {};
 
