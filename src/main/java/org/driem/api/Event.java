@@ -2,7 +2,7 @@ package org.driem.api;
 
 public class Event {
     private String name;
-    private Boolean finished;
+    private Boolean finished = false;
     private String description;
 
     public Event() {
