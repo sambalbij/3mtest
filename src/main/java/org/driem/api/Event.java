@@ -3,13 +3,15 @@ package org.driem.api;
 public class Event {
     private String name;
     private Boolean finished;
+    private String description;
 
     public Event() {
     }
 
-    public Event(String name, Boolean finished) {
+    public Event(String name, String description, Boolean finished) {
         this.name = name;
         this.finished = finished;
+        this.description = description;
     }
 
     public String getName() {
@@ -26,5 +28,13 @@ public class Event {
 
     public void setFinished(Boolean finished) {
         this.finished = finished;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

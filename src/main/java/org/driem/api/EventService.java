@@ -23,4 +23,8 @@ public class EventService {
         logger.debug("I have found {} events", events.size());
         return events;
     }
+
+    public void storeEvent(Event event) {
+        eventRepository.storeEvent(event);
+    }
 }

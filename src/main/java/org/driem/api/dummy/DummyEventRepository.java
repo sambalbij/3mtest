@@ -5,14 +5,24 @@ import org.driem.api.EventRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Repository
 public class DummyEventRepository implements EventRepository {
+
+    private List<Event> events = Arrays.asList(
+            new Event("Vakantie Kreta", "Met mijn vrienden naar Kreta", false),
+            new Event("Elasticon", "Business trip naar San Francisco", false));
+
     @Override
     public List<Event> loadAllEvents() {
-        return Arrays.asList(
-                new Event("Vakantie Kreta", false),
-                new Event("Elasticon", false));
+        return Collections.unmodifiableList(events);
+    }
+
+    @Override
+    public Event storeEvent(Event event) {
+        events.add(event);
+        return event;
     }
 }

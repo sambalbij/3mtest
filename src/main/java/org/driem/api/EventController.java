@@ -22,4 +22,10 @@ public class EventController {
     public List<Event> events() {
         return eventService.findAllEvents();
     }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public void storeEvent(Event event) {
+        eventService.storeEvent(event);
+    }
+
 }
