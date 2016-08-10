@@ -5,11 +5,9 @@ package org.driem.api;
  */
 public class Participant {
     private String name;
-    private int id;
 
-    public Participant(String name, int id) {
+    public Participant(String name) {
         this.name = name;
-        this.id = id;
     }
 
     public String getName() {
@@ -18,13 +16,5 @@ public class Participant {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getID() {
-        return id;
-    }
-
-    public void setID(int id) {
-        this.id = id;
     }
 }

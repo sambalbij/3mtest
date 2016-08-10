@@ -1,19 +1,22 @@
 package org.driem.api;
 
 
-import java.util.List;
+import java.util.*;
 
 public class Activity {
     private String name, desciption;
     private List<String> participants;
     private double cost;
-    private List<Item> items;
+    private Map<Integer, Item> items = new HashMap<>();
+    private int ID;
 
-    public Activity(String name, String desciption, List<String> participants, List<Item> items) {
+    public Activity(String name, String desciption, int ID, List<String> participants, Map<Integer, Item> items) {
         this.name = name;
         this.desciption = desciption;
         this.participants = participants;
         this.items = items;
+        this.ID = ID;
+
     }
 
     public String getName() {
@@ -48,11 +51,35 @@ public class Activity {
         this.cost = cost;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public int getID() {
+        return ID;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public void addParticipant(String name){
+        participants.add(name);
+    }
+
+    public void removeParticipant(String name){
+        participants.remove(name);
+    }
+
+    public void addItem(Item item){
+        items.put(item.getID(), item);
+    }
+
+    public void removeItem(int ID){
+        items.remove(ID);
+    }
+
+    public void addParticipantToItem(int ID, String name){
+        items.get(ID).addParticipant(name);
+    }
+
+    public void removeParticipantFromItem(int ID, String name){
+        items.get(ID).removeParticipant(name);
     }
 }

@@ -9,7 +9,7 @@ public class Event {
     private String name;
     private Map<String, Participant> participants = new HashMap<>();
 
-    private List<Activity> activities;
+    private Map<Integer, Activity> activities = new HashMap<>();
     private Boolean finished = false;
     private String description;
 
@@ -21,10 +21,49 @@ public class Event {
         this.description = description;
     }
 
-    public boolean addParticipant(String name, int id)
+    public void addParticipant(String name)
     {
-        participants.put(name, new Participant(name, id));
-        return true;
+        participants.put(name, new Participant(name));
+    }
+
+    public void removeParticipant(String name)
+    {
+        participants.remove(name);
+    }
+
+    public void addActivity(Activity activity)
+    {
+        activities.put(activity.getID(),activity);
+    }
+
+    public void removeActivity(int ID)
+    {
+        activities.remove(ID);
+    }
+
+    public void addParticipantToActivity(int ID, String name)
+    {
+         activities.get(ID).addParticipant(name);
+    }
+
+    public void removeParticipantFromActivity(int ID, String name){
+        activities.get(ID).removeParticipant(name);
+    }
+
+    public void addItemToActivity(int ID, Item item){
+        activities.get(ID).addItem(item);
+    }
+
+    public void removeItemFromActivity(int activitiyID, int itemID){
+        activities.get(activitiyID).removeItem(itemID);
+    }
+
+    public void addParticipantToItem(int activityID, int itemID, String name){
+        activities.get(activityID).addParticipantToItem(itemID, name);
+    }
+
+    public void removeParticipantFromItem(int activityID, int itemID, String name) {
+        activities.get(activityID).removeParticipantFromItem(itemID,name);
     }
 
     public String getName() {
@@ -67,14 +106,16 @@ public class Event {
         this.ID = ID;
     }
 
-    public List<Activity> getActivities() {
+    public Map<Integer, Activity> getActivities() {
         return activities;
     }
 
-    public void setActivities(List<Activity> activities) {
+    public void setActivities(Map<Integer, Activity> activities) {
         this.activities = activities;
     }
 
     public Event() {
     }
+
+
 }

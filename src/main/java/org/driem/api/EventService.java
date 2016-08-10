@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EventService {
@@ -20,8 +20,8 @@ public class EventService {
       //  this.participantRepository = participantRepository;
     }
 
-    public List<Event> findAllEvents() {
-        List<Event> events = eventRepository.loadAllEvents();
+    public Map<Integer,Event> findAllEvents() {
+        Map<Integer,Event> events = eventRepository.loadAllEvents();
         logger.debug("I have found {} events", events.size());
         return events;
     }

@@ -7,10 +7,12 @@ public class Item {
     private String name, description;
     private List<String> participants;
     private double cost;
+    private int ID;
 
-    public Item(String name, String description, List<String> participants) {
+    public Item(String name, String description, int ID, List<String> participants) {
         this.name = name;
         this.description = description;
+        this.ID = ID;
         this.participants = participants;
     }
 
@@ -36,5 +38,21 @@ public class Item {
 
     public void setParticipants(List<String> participants) {
         this.participants = participants;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public void addParticipant(String name) {
+        participants.add(name);
+    }
+
+    public void removeParticipant(String name){
+        participants.remove(name);
     }
 }
