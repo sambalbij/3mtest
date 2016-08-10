@@ -40,4 +40,10 @@ public class EventController {
         return eventService.obtainEvent(id);
     }
 
+    @RequestMapping(value = "/{id}/participant", method = POST)
+    public void addParticipantToEvent(@PathVariable int id,
+                                      @RequestBody Participant participant) {
+        logger.debug("Add participant to event with id {}", id);
+        eventService.addParticipantToEvent(id, participant);
+    }
 }

@@ -4,6 +4,7 @@ import org.driem.api.Activity;
 import org.driem.api.Event;
 import org.driem.api.EventRepository;
 import org.driem.api.Item;
+import org.driem.api.Participant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -41,9 +42,9 @@ public class DummyEventRepository implements EventRepository {
     }
 
     @Override
-    public void addParticipantToEvent(int eventID, String name) {
-        events.get(eventID).addParticipant(name);
-        logger.debug("Added particpant with name {}", name);
+    public void addParticipantToEvent(int eventID, Participant participant) {
+        events.get(eventID).addParticipant(participant);
+        logger.debug("Added particpant with name {}", participant.getName());
     }
 
     @Override

@@ -22,8 +22,8 @@ public class Event {
         this.description = description;
     }
 
-    public void addParticipant(String name) {
-        participants.put(name, new Participant(name));
+    public void addParticipant(Participant participant) {
+        participants.put(participant.getName(), participant);
     }
 
     public void removeParticipant(String name) {

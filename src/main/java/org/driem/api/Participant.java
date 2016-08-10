@@ -6,6 +6,9 @@ package org.driem.api;
 public class Participant {
     private String name;
 
+    public Participant() {
+    }
+
     public Participant(String name) {
         this.name = name;
     }

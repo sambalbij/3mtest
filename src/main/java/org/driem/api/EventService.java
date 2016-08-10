@@ -45,4 +45,8 @@ public class EventService {
     public Event obtainEvent(int id) {
         return eventRepository.loadEvent(id);
     }
+
+    public void addParticipantToEvent(int id, Participant participant) {
+        eventRepository.addParticipantToEvent(id, participant);
+    }
 }
