@@ -12,10 +12,12 @@ public class EventService {
     private static final Logger logger = LoggerFactory.getLogger(EventService.class);
 
     private EventRepository eventRepository;
+  //  private ParticipantRepository participantRepository;
 
     @Autowired
-    public EventService(EventRepository eventRepository) {
+    public EventService(EventRepository eventRepository){//, ParticipantRepository participantRepository) {
         this.eventRepository = eventRepository;
+      //  this.participantRepository = participantRepository;
     }
 
     public List<Event> findAllEvents() {
@@ -23,6 +25,11 @@ public class EventService {
         logger.debug("I have found {} events", events.size());
         return events;
     }
+
+  //  public Event findEvent(int id)
+ //   {
+//
+ //   }
 
     public void storeEvent(Event event) {
         eventRepository.storeEvent(event);
