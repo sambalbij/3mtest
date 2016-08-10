@@ -1,11 +1,10 @@
 package org.driem.api;
 
-import java.rmi.activation.ActivationID;
-
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Event {
-    int ID;
+    private int ID;
     private String name;
     private Map<String, Participant> participants = new HashMap<>();
 
@@ -13,57 +12,54 @@ public class Event {
     private Boolean finished = false;
     private String description;
 
+    public Event() {
+    }
 
-
-    public Event(String name, String description, Boolean finished) {
+    public Event(int ID, String name, String description, Boolean finished) {
+        this.ID = ID;
         this.name = name;
         this.finished = finished;
         this.description = description;
     }
 
-    public void addParticipant(String name)
-    {
+    public void addParticipant(String name) {
         participants.put(name, new Participant(name));
     }
 
-    public void removeParticipant(String name)
-    {
+    public void removeParticipant(String name) {
         participants.remove(name);
     }
 
-    public void addActivity(Activity activity)
-    {
-        activities.put(activity.getID(),activity);
+    public void addActivity(Activity activity) {
+        activities.put(activity.getID(), activity);
     }
 
-    public void removeActivity(int ID)
-    {
+    public void removeActivity(int ID) {
         activities.remove(ID);
     }
 
-    public void addParticipantToActivity(int ID, String name)
-    {
-         activities.get(ID).addParticipant(name);
+    public void addParticipantToActivity(int ID, String name) {
+        activities.get(ID).addParticipant(name);
     }
 
-    public void removeParticipantFromActivity(int ID, String name){
+    public void removeParticipantFromActivity(int ID, String name) {
         activities.get(ID).removeParticipant(name);
     }
 
-    public void addItemToActivity(int ID, Item item){
+    public void addItemToActivity(int ID, Item item) {
         activities.get(ID).addItem(item);
     }
 
-    public void removeItemFromActivity(int activitiyID, int itemID){
+    public void removeItemFromActivity(int activitiyID, int itemID) {
         activities.get(activitiyID).removeItem(itemID);
     }
 
-    public void addParticipantToItem(int activityID, int itemID, String name){
+    public void addParticipantToItem(int activityID, int itemID, String name) {
         activities.get(activityID).addParticipantToItem(itemID, name);
     }
 
     public void removeParticipantFromItem(int activityID, int itemID, String name) {
-        activities.get(activityID).removeParticipantFromItem(itemID,name);
+        activities.get(activityID).removeParticipantFromItem(itemID, name);
     }
 
     public String getName() {
@@ -113,9 +109,4 @@ public class Event {
     public void setActivities(Map<Integer, Activity> activities) {
         this.activities = activities;
     }
-
-    public Event() {
-    }
-
-
 }

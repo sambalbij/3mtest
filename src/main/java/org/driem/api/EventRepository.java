@@ -1,14 +1,21 @@
 package org.driem.api;
 
 import java.util.List;
-import java.util.Map;
 
 public interface EventRepository {
     List<Event> loadAllEvents();
 
     Event storeEvent(Event event);
 
-    void addParticipantToEvent(int eventID, String name);
+    /**
+     * Add the provided participant name to the event.
+     *
+     * @param eventID Id of the event to add the participant to.
+     * @param name    String containing the name of the participant to add.
+     * @throws NonUniqueParticipantNameException when the name of the provided participant is already in the list of
+     *                                           participants of the specified event
+     */
+    void addParticipantToEvent(int eventID, String name) throws NonUniqueParticipantNameException;
 
     void removeParticipantFromEvent(int eventID, String name);
 

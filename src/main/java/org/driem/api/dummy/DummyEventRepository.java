@@ -1,12 +1,19 @@
 package org.driem.api.dummy;
 
-import org.driem.api.*;
+import org.driem.api.Activity;
+import org.driem.api.Event;
+import org.driem.api.EventRepository;
+import org.driem.api.Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class DummyEventRepository implements EventRepository {
@@ -17,13 +24,13 @@ public class DummyEventRepository implements EventRepository {
     @PostConstruct
     public void init() {
         logger.debug("In PostConstruct creating two events");
-        events.put(0, new Event("Vakantie Kreta", "Met mijn vrienden naar Kreta", false));
-        events.put(1, new Event("Elasticon", "Business trip naar San Francisco", false));
+        createEvent(0, "Vakantie Kreta", "Met mijn vrienden naar Kreta");
+        createEvent(1, "Elasticon", "Business trip naar San Francisco");
     }
 
     @Override
     public List<Event> loadAllEvents() {
-        return Collections.unmodifiableList(new ArrayList<Event>(events.values()));
+        return Collections.unmodifiableList(new ArrayList<>(events.values()));
     }
 
     @Override
@@ -90,5 +97,11 @@ public class DummyEventRepository implements EventRepository {
     @Override
     public void removeParticipantFromItem(int eventID, int activityID, int itemID, String name) {
         events.get(eventID).removeParticipantFromItem(activityID,itemID,name);
+        logger.debug("Removed participant with name {} from item with ID {}", name, itemID);
+    }
+
+    private void createEvent(int id, String name, String description) {
+        Event event1 = new Event(id, name, description, false);
+        this.storeEvent(event1);
     }
 }
