@@ -1,10 +1,11 @@
 package org.driem.api;
 
-import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,18 +17,16 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
 public class EventServiceTest {
+
+    @Rule
+    public MockitoRule rule = MockitoJUnit.rule();
 
     @Mock
     EventRepository eventRepository;
+
+    @InjectMocks
     private EventService service;
-
-    @Before
-    public void before() {
-        service = new EventService(eventRepository);
-    }
-
 
     @Test
     public void findAllEvents() throws Exception {
