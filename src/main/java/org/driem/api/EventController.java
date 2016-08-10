@@ -3,10 +3,12 @@ package org.driem.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
 @RequestMapping("/event")
@@ -19,12 +21,12 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = GET)
     public List<Event> events() {
         return eventService.findAllEvents();
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = POST)
     public void storeEvent(@RequestBody Event event) {
         eventService.storeEvent(event);
     }
