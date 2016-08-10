@@ -20,8 +20,8 @@ public class EventService {
       //  this.participantRepository = participantRepository;
     }
 
-    public Map<Integer,Event> findAllEvents() {
-        Map<Integer,Event> events = eventRepository.loadAllEvents();
+    public List<Event> findAllEvents() {
+        List<Event> events = eventRepository.loadAllEvents();
         logger.debug("I have found {} events", events.size());
         return events;
     }

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface EventRepository {
-    Map<Integer, Event> loadAllEvents();
+    List<Event> loadAllEvents();
 
     Event storeEvent(Event event);
 

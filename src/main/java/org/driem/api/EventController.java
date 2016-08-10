@@ -22,7 +22,7 @@ public class EventController {
     }
 
     @RequestMapping(method = GET)
-    public Map<Integer,Event> events() {
+    public List<Event> events() {
         return eventService.findAllEvents();
     }
 

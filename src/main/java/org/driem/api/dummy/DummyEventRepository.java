@@ -22,8 +22,8 @@ public class DummyEventRepository implements EventRepository {
     }
 
     @Override
-    public Map<Integer, Event> loadAllEvents() {
-        return Collections.unmodifiableMap(events);
+    public List<Event> loadAllEvents() {
+        return Collections.unmodifiableList(new ArrayList<Event>(events.values()));
     }
 
     @Override
