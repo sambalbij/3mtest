@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EventService {
@@ -19,16 +20,29 @@ public class EventService {
         this.eventRepository = eventRepository;
     }
 
-    public List<Event> findAllEvents() {
+    public List<EventOverview> findAllEvents() {
         List<Event> events = eventRepository.loadAllEvents();
         if (events == null) {
             events = new ArrayList<>();
         }
         logger.debug("I have found {} events", events.size());
-        return events;
+
+        return events
+                .stream()
+                .map(event -> new EventOverview(
+                        event.getID(),
+                        event.getName(),
+                        event.getDescription(),
+                        event.getFinished())
+                )
+                .collect(Collectors.toList());
     }
 
     public void storeEvent(Event event) {
         eventRepository.storeEvent(event);
+    }
+
+    public Event obtainEvent(int id) {
+        return eventRepository.loadEvent(id);
     }
 }

@@ -36,4 +36,5 @@ public interface EventRepository {
     void removeParticipantFromItem(int eventID, int activityID, int itemID, String name);
 
 
+    Event loadEvent(int id);
 }

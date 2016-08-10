@@ -58,7 +58,7 @@ public class EventServiceTest {
     public void findAllEvents() throws Exception {
         when(eventRepository.loadAllEvents()).thenReturn(allEvents());
 
-        List<Event> allEvents = service.findAllEvents();
+        List<EventOverview> allEvents = service.findAllEvents();
 
         assertEquals("Total number of events not correct", 2, allEvents.size());
 
@@ -69,7 +69,7 @@ public class EventServiceTest {
     public void findAllEvents_noResultsFromRepo() {
         when(eventRepository.loadAllEvents()).thenReturn(null);
 
-        List<Event> allEvents = service.findAllEvents();
+        List<EventOverview> allEvents = service.findAllEvents();
 
         assertNotNull("Events list should not be null", allEvents);
         assertEquals("Total number of events should be 0", 0, allEvents.size());

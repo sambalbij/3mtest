@@ -1,11 +1,14 @@
 package org.driem.api;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.*;
+import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -13,7 +16,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RestController
 @RequestMapping("/event")
 public class EventController {
-
+    private static final Logger logger = LoggerFactory.getLogger(EventController.class);
     private EventService eventService;
 
     @Autowired
@@ -22,7 +25,7 @@ public class EventController {
     }
 
     @RequestMapping(method = GET)
-    public List<Event> events() {
+    public List<EventOverview> events() {
         return eventService.findAllEvents();
     }
 
@@ -31,5 +34,10 @@ public class EventController {
         eventService.storeEvent(event);
     }
 
+    @RequestMapping(value = "/{id}", method = GET)
+    public Event obtainEvent(@PathVariable int id) {
+        logger.debug("Load the event with id {}", id);
+        return eventService.obtainEvent(id);
+    }
 
 }

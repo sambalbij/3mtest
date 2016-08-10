@@ -100,6 +100,11 @@ public class DummyEventRepository implements EventRepository {
         logger.debug("Removed participant with name {} from item with ID {}", name, itemID);
     }
 
+    @Override
+    public Event loadEvent(int id) {
+        return events.get(id);
+    }
+
     private void createEvent(int id, String name, String description) {
         Event event1 = new Event(id, name, description, false);
         this.storeEvent(event1);
