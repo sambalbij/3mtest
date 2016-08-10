@@ -32,8 +32,4 @@ public class EventController {
     }
 
 
-  //  @RequestMapping(method = RequestMethod.GET)
-  //  @ResponseBody
-  //  public Event getEvent(int id) {return eventService.findEvent(id);
- //   }
 }

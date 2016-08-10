@@ -26,11 +26,6 @@ public class EventService {
         return events;
     }
 
-  //  public Event findEvent(int id)
- //   {
-//
- //   }
-
     public void storeEvent(Event event) {
         eventRepository.storeEvent(event);
     }

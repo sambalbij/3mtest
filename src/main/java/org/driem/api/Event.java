@@ -1,11 +1,15 @@
 package org.driem.api;
 
-import java.util.List;
+import java.rmi.activation.ActivationID;
+
+import java.util.*;
 
 public class Event {
     int ID;
     private String name;
-    private List<Participant> participants;
+    private Map<String, Participant> participants = new HashMap<>();
+
+    private List<Activity> activities;
     private Boolean finished = false;
     private String description;
 
@@ -17,9 +21,9 @@ public class Event {
         this.description = description;
     }
 
-    public boolean addParticipant(String name)
+    public boolean addParticipant(String name, int id)
     {
-        participants.add(new Participant(name));
+        participants.put(name, new Participant(name, id));
         return true;
     }
 
@@ -47,13 +51,14 @@ public class Event {
         this.description = description;
     }
 
-    public List<Participant> getParticipants() {
+    public Map<String, Participant> getParticipants() {
         return participants;
     }
 
-    public void setParticipants(List<Participant> participants) {
+    public void setParticipants(Map<String, Participant> participants) {
         this.participants = participants;
     }
+
     public int getID() {
         return ID;
     }
@@ -61,6 +66,15 @@ public class Event {
     public void setID(int ID) {
         this.ID = ID;
     }
+
+    public List<Activity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
+    }
+
     public Event() {
     }
 }
