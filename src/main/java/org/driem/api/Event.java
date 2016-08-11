@@ -35,7 +35,7 @@ public class Event {
     }
 
     public void removeActivity(int activityID) {
-        activities.remove(ID);
+        activities.remove(activityID);
     }
 
     public void addParticipantToActivity(int activityID, int participantID) {

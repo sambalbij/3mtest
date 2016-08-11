@@ -38,8 +38,9 @@ public class EventService {
                 .collect(Collectors.toList());
     }
 
-    public void storeEvent(Event event) {
-        eventRepository.storeEvent(event);
+    public void storeEvent(EventOverview eventOverview) {
+
+        eventRepository.storeEvent(new Event(eventOverview.getID(),eventOverview.getName(),eventOverview.getDescription(),eventOverview.getFinished()));
     }
 
     public Event obtainEvent(int id) {
@@ -50,7 +51,15 @@ public class EventService {
         eventRepository.addParticipantToEvent(id, participant);
     }
 
+    public void removeParticipantFromEvent(int eventId, int participantId) {
+        eventRepository.removeParticipantFromEvent(eventId, participantId);
+    }
+
     public void addActivityToEvent(int id, Activity activity) {
         eventRepository.addActivityToEvent(id, activity);
+    }
+
+    public void removeActivityFromEvent(int eventId, int activityId) {
+        eventRepository.removeActivity(eventId, activityId);
     }
 }

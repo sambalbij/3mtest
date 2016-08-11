@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -30,8 +31,8 @@ public class EventController {
     }
 
     @RequestMapping(method = POST)
-    public void storeEvent(@RequestBody Event event) {
-        eventService.storeEvent(event);
+    public void storeEvent(@RequestBody EventOverview eventOverview) {
+        eventService.storeEvent(eventOverview);
     }
 
     @RequestMapping(value = "/{id}", method = GET)
@@ -41,16 +42,27 @@ public class EventController {
     }
 
     @RequestMapping(value = "/{id}/participant", method = POST)
-    public void addParticipantToEvent(@PathVariable int id,
-                                      @RequestBody Participant participant) {
+    public void addParticipantToEvent(@PathVariable int id, @RequestBody Participant participant) {
         logger.debug("Add participant to event with id {}", id);
         eventService.addParticipantToEvent(id, participant);
     }
 
+    @RequestMapping(value = "/{eventId}/participant/{participantId}", method = DELETE)
+    public void deleteParticipantFromEvent(@PathVariable int eventId, @PathVariable int participantId) {
+        logger.debug("Remove participant with id {} from event with id {}", participantId, eventId);
+        eventService.removeParticipantFromEvent(eventId, participantId);
+    }
+
     @RequestMapping(value = "/{id}/activity", method = POST)
-    public void addActivityToEvent(@PathVariable int id,
-                                   @RequestBody Activity activity) {
+    public void addActivityToEvent(@PathVariable int id, @RequestBody Activity activity) {
         logger.debug("Add activity to event with id {}", id);
         eventService.addActivityToEvent(id, activity);
     }
+
+    @RequestMapping(value = "/{eventId}/activity/{activityId}", method = DELETE)
+    public void removeActivityFromEvent(@PathVariable int eventId, @PathVariable int activityId) {
+        logger.debug("Remove activity with id {} from event with id {}", activityId, eventId);
+        eventService.removeActivityFromEvent(eventId, activityId);
+    }
+
 }

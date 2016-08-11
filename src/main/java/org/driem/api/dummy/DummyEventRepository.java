@@ -1,10 +1,6 @@
 package org.driem.api.dummy;
 
-import org.driem.api.Activity;
-import org.driem.api.Event;
-import org.driem.api.EventRepository;
-import org.driem.api.Item;
-import org.driem.api.Participant;
+import org.driem.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
@@ -37,10 +33,9 @@ public class DummyEventRepository implements EventRepository {
     }
 
     @Override
-    public Event storeEvent(Event event) {
+    public void storeEvent(Event event) {
         events.put(event.getID(),event);
         logger.debug("Stored an event with name {}", event.getName());
-        return event;
     }
 
     @Override
