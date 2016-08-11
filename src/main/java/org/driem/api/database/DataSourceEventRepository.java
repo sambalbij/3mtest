@@ -43,16 +43,18 @@ public class DataSourceEventRepository implements EventRepository {
 
     @Override
     public Event storeEvent(Event event) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void addParticipantToEvent(int eventID, Participant participant) throws NonUniqueParticipantNameException {
+        throw new UnsupportedOperationException();
 
     }
 
     @Override
     public void removeParticipantFromEvent(int eventID, int participantID) {
+        throw new UnsupportedOperationException();
 
     }
 
@@ -71,36 +73,43 @@ public class DataSourceEventRepository implements EventRepository {
 
     @Override
     public void removeActivity(int eventID, int activityID) {
+        throw new UnsupportedOperationException();
 
     }
 
     @Override
     public void addParticipantToActivity(int eventID, int activityID, int participantID) {
+        throw new UnsupportedOperationException();
 
     }
 
     @Override
     public void removeParticipantFromActivity(int eventID, int activityID, int participantID) {
+        throw new UnsupportedOperationException();
 
     }
 
     @Override
     public void addItemToActivity(int eventID, int activityID, Item item) {
+        throw new UnsupportedOperationException();
 
     }
 
     @Override
     public void removeItemFromActivity(int eventID, int activityID, int itemID) {
+        throw new UnsupportedOperationException();
 
     }
 
     @Override
     public void addParticipantToItem(int eventID, int activityID, int itemID, int participantID) {
+        throw new UnsupportedOperationException();
 
     }
 
     @Override
     public void removeParticipantFromItem(int eventID, int activityID, int itemID, int participantID) {
+        throw new UnsupportedOperationException();
 
     }
 

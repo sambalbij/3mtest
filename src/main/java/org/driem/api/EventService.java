@@ -50,7 +50,15 @@ public class EventService {
         eventRepository.addParticipantToEvent(id, participant);
     }
 
+    public void removeParticipantFromEvent(int eventId, int participantId) {
+        eventRepository.removeParticipantFromEvent(eventId, participantId);
+    }
+
     public void addActivityToEvent(int id, Activity activity) {
         eventRepository.addActivityToEvent(id, activity);
+    }
+
+    public void removeActivityFromEvent(int eventId, int activityId) {
+        eventRepository.removeActivity(eventId, activityId);
     }
 }
