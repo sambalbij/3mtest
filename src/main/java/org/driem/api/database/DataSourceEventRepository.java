@@ -87,14 +87,22 @@ public class DataSourceEventRepository implements EventRepository {
 
     @Override
     public void removeParticipantFromActivity(int eventID, int activityID, int participantID) {
-        throw new UnsupportedOperationException();
-
+        int update = jdbcTemplate.update(
+                "REMOVE FROM activity_participant WHERE activity_id = ? AND participant_id = ?",
+                activityID,
+                participantID
+                );
     }
 
     @Override
     public void addItemToActivity(int eventID, int activityID, Item item) {
-        throw new UnsupportedOperationException();
-
+        int update = jdbcTemplate.update(
+                "INSERT INTO items (name, description, cost, activity_id) VALUES (?,?,?,?)",
+                item.getName(),
+                item.getDescription(),
+                item.getCost(),
+                activityID
+        );
     }
 
     @Override
