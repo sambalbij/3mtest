@@ -30,8 +30,8 @@ public class EventController {
     }
 
     @RequestMapping(method = POST)
-    public void storeEvent(@RequestBody Event event) {
-        eventService.storeEvent(event);
+    public void storeEvent(@RequestBody EventOverview eventOverview) {
+        eventService.storeEvent(eventOverview);
     }
 
     @RequestMapping(value = "/{id}", method = GET)

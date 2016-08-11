@@ -42,8 +42,14 @@ public class DataSourceEventRepository implements EventRepository {
     }
 
     @Override
-    public Event storeEvent(Event event) {
-        return null;
+    public void storeEvent(Event event)
+    {
+        int update = jdbcTemplate.update(
+                "INSERT INTO events (name, description, finished) VALUES (?,?,?,?)",
+                event.getName(),
+                event.getDescription(),
+                event.getFinished()
+        );
     }
 
     @Override
@@ -90,18 +96,21 @@ public class DataSourceEventRepository implements EventRepository {
     }
 
     @Override
-    public void removeItemFromActivity(int eventID, int activityID, int itemID) {
-
+    public void removeItemFromActivity(int eventID, int activityID, int itemID)
+    {
+        jdbcTemplate.update("DELETE FROM items WHERE item_id = ? ", itemID);
     }
 
     @Override
-    public void addParticipantToItem(int eventID, int activityID, int itemID, int participantID) {
-
+    public void addParticipantToItem(int eventID, int activityID, int itemID, int participantID)
+    {
+        jdbcTemplate.update("INSERT INTO activity_participant (participant_id, activity_id) VALUES (?,?)",participantID,activityID);
     }
 
     @Override
-    public void removeParticipantFromItem(int eventID, int activityID, int itemID, int participantID) {
-
+    public void removeParticipantFromItem(int eventID, int activityID, int itemID, int participantID)
+    {
+        jdbcTemplate.update("DELETE FROM participant_item WHERE item_id = ? AND participant_id = ? ", itemID, participantID);
     }
 
     @Override
