@@ -4,16 +4,24 @@ package org.driem.api;
 import java.util.List;
 
 public class Item {
-    private String name, description;
-    private List<Integer> participants;
-    private double cost;
     private int ID;
+    private double cost;
+    private String name;
+    private String description;
+    private List<Integer> participants;
 
-    public Item(String name, String description, int ID, List<Integer> participants) {
+    public Item(int ID, double cost, String name, String description) {
+        this(ID, cost, name, description, null);
+    }
+
+    public Item(int ID, double cost, String name, String description, List<Integer> participants) {
+        this.ID = ID;
+        this.cost = cost;
         this.name = name;
         this.description = description;
-        this.ID = ID;
-        this.participants = participants;
+        if (participants != null) {
+            this.participants = participants;
+        }
     }
 
     public String getName() {
@@ -52,7 +60,15 @@ public class Item {
         participants.add(ID);
     }
 
-    public void removeParticipant(int ID ){
+    public void removeParticipant(int ID) {
         participants.remove(ID);
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
     }
 }

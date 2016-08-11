@@ -6,7 +6,7 @@ import java.util.Map;
 public class Event {
     private int ID;
     private String name;
-    private Map<String, Participant> participants = new HashMap<>();
+    private Map<Integer, Participant> participants = new HashMap<>();
 
     private Map<Integer, Activity> activities = new HashMap<>();
     private Boolean finished = false;
@@ -23,7 +23,7 @@ public class Event {
     }
 
     public void addParticipant(Participant participant) {
-        participants.put(participant.getName(), participant);
+        participants.put(participant.getId(), participant);
     }
 
     public void removeParticipant(int participantID) {
@@ -86,11 +86,11 @@ public class Event {
         this.description = description;
     }
 
-    public Map<String, Participant> getParticipants() {
+    public Map<Integer, Participant> getParticipants() {
         return participants;
     }
 
-    public void setParticipants(Map<String, Participant> participants) {
+    public void setParticipants(Map<Integer, Participant> participants) {
         this.participants = participants;
     }
 

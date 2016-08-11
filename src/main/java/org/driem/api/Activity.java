@@ -1,6 +1,7 @@
 package org.driem.api;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +9,7 @@ import java.util.Map;
 public class Activity {
     private String name;
     private String description;
-    private List<Integer> participants;
+    private List<Integer> participants = new ArrayList<>();
     private double cost;
     private Map<Integer, Item> items = new HashMap<>();
     private int ID;
@@ -16,11 +17,20 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(String name, String description, int ID, List<Integer> participants, Map<Integer, Item> items) {
+    public Activity(String name, String description, int ID, double cost) {
+        this(name, description, ID, cost, null, null);
+    }
+
+    public Activity(String name, String description, int ID, double cost, List<Integer> participants, Map<Integer, Item> items) {
         this.name = name;
         this.description = description;
-        this.participants = participants;
-        this.items = items;
+        this.cost = cost;
+        if (participants != null) {
+            this.participants = participants;
+        }
+        if (items != null) {
+            this.items = items;
+        }
         this.ID = ID;
     }
 
@@ -86,5 +96,13 @@ public class Activity {
 
     public void removeParticipantFromItem(int ID, int participantID){
         items.get(ID).removeParticipant(participantID);
+    }
+
+    public Map<Integer, Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Map<Integer, Item> items) {
+        this.items = items;
     }
 }
