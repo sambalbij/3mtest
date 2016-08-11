@@ -39,15 +39,15 @@ public class Event {
     }
 
     public void addParticipantToActivity(int activityID, int participantID) {
-        activities.get(ID).addParticipant(participantID);
+        activities.get(activityID).addParticipant(participantID);
     }
 
     public void removeParticipantFromActivity(int activityID, int participantID) {
-        activities.get(ID).removeParticipant(participantID);
+        activities.get(activityID).removeParticipant(participantID);
     }
 
     public void addItemToActivity(int activityID, Item item) {
-        activities.get(ID).addItem(item);
+        activities.get(activityID).addItem(item);
     }
 
     public void removeItemFromActivity(int activitiyID, int itemID) {
