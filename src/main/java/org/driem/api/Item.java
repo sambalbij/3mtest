@@ -5,11 +5,11 @@ import java.util.List;
 
 public class Item {
     private String name, description;
-    private List<String> participants;
+    private List<Integer> participants;
     private double cost;
     private int ID;
 
-    public Item(String name, String description, int ID, List<String> participants) {
+    public Item(String name, String description, int ID, List<Integer> participants) {
         this.name = name;
         this.description = description;
         this.ID = ID;
@@ -32,11 +32,11 @@ public class Item {
         this.description = description;
     }
 
-    public List<String> getParticipants() {
+    public List<Integer> getParticipants() {
         return participants;
     }
 
-    public void setParticipants(List<String> participants) {
+    public void setParticipants(List<Integer> participants) {
         this.participants = participants;
     }
 
@@ -48,11 +48,11 @@ public class Item {
         this.ID = ID;
     }
 
-    public void addParticipant(String name) {
-        participants.add(name);
+    public void addParticipant(int ID) {
+        participants.add(ID);
     }
 
-    public void removeParticipant(String name){
-        participants.remove(name);
+    public void removeParticipant(int ID ){
+        participants.remove(ID);
     }
 }

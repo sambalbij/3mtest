@@ -26,27 +26,27 @@ public class Event {
         participants.put(participant.getName(), participant);
     }
 
-    public void removeParticipant(String name) {
-        participants.remove(name);
+    public void removeParticipant(int participantID) {
+        participants.remove(participantID);
     }
 
     public void addActivity(Activity activity) {
         activities.put(activity.getID(), activity);
     }
 
-    public void removeActivity(int ID) {
+    public void removeActivity(int activityID) {
         activities.remove(ID);
     }
 
-    public void addParticipantToActivity(int ID, String name) {
-        activities.get(ID).addParticipant(name);
+    public void addParticipantToActivity(int activityID, int participantID) {
+        activities.get(ID).addParticipant(participantID);
     }
 
-    public void removeParticipantFromActivity(int ID, String name) {
-        activities.get(ID).removeParticipant(name);
+    public void removeParticipantFromActivity(int activityID, int participantID) {
+        activities.get(ID).removeParticipant(participantID);
     }
 
-    public void addItemToActivity(int ID, Item item) {
+    public void addItemToActivity(int activityID, Item item) {
         activities.get(ID).addItem(item);
     }
 
@@ -54,12 +54,12 @@ public class Event {
         activities.get(activitiyID).removeItem(itemID);
     }
 
-    public void addParticipantToItem(int activityID, int itemID, String name) {
-        activities.get(activityID).addParticipantToItem(itemID, name);
+    public void addParticipantToItem(int activityID, int itemID, int participantID) {
+        activities.get(activityID).addParticipantToItem(itemID, participantID);
     }
 
-    public void removeParticipantFromItem(int activityID, int itemID, String name) {
-        activities.get(activityID).removeParticipantFromItem(itemID, name);
+    public void removeParticipantFromItem(int activityID, int itemID, int participantID) {
+        activities.get(activityID).removeParticipantFromItem(itemID, participantID);
     }
 
     public String getName() {

@@ -48,9 +48,9 @@ public class DummyEventRepository implements EventRepository {
     }
 
     @Override
-    public void removeParticipantFromEvent(int eventID, String name) {
-        events.get(eventID).removeParticipant(name);
-        logger.debug("Removed particpant with name {}", name);
+    public void removeParticipantFromEvent(int eventID, int participantID) {
+        events.get(eventID).removeParticipant(participantID);
+        logger.debug("Removed particpant with ID {}", participantID);
     }
 
     @Override
@@ -66,15 +66,15 @@ public class DummyEventRepository implements EventRepository {
     }
 
     @Override
-    public void addParticipantToActivity(int eventID, int activityID, String name) {
-        events.get(eventID).addParticipantToActivity(activityID,name);
-        logger.debug("Added participant with name {} to activity ID {}", name,activityID);
+    public void addParticipantToActivity(int eventID, int activityID, int participantID) {
+        events.get(eventID).addParticipantToActivity(activityID, participantID);
+        logger.debug("Added participant with ID {} to activity ID {}", participantID,activityID);
     }
 
     @Override
-    public void removeParticipantFromActivity(int eventID, int activityID, String name) {
-        events.get(eventID).removeParticipantFromActivity(activityID,name);
-        logger.debug("Removed participant with name {} from activity with ID {}", name, activityID);
+    public void removeParticipantFromActivity(int eventID, int activityID, int participantID) {
+        events.get(eventID).removeParticipantFromActivity(activityID, participantID);
+        logger.debug("Removed participant with ID {} from activity with ID {}", participantID, activityID);
     }
 
     @Override
@@ -90,15 +90,15 @@ public class DummyEventRepository implements EventRepository {
     }
 
     @Override
-    public void addParticipantToItem(int eventID, int activityID, int itemID, String name) {
-        events.get(eventID).addParticipantToItem(activityID, itemID, name);
-        logger.debug("Added participant with name {} to item with ID {}",name, itemID);
+    public void addParticipantToItem(int eventID, int activityID, int itemID, int participantID) {
+        events.get(eventID).addParticipantToItem(activityID, itemID, participantID);
+        logger.debug("Added participant with ID {} to item with ID {}",participantID, itemID);
     }
 
     @Override
-    public void removeParticipantFromItem(int eventID, int activityID, int itemID, String name) {
-        events.get(eventID).removeParticipantFromItem(activityID,itemID,name);
-        logger.debug("Removed participant with name {} from item with ID {}", name, itemID);
+    public void removeParticipantFromItem(int eventID, int activityID, int itemID, int participantID) {
+        events.get(eventID).removeParticipantFromItem(activityID,itemID,participantID);
+        logger.debug("Removed participant with ID {} from item with ID {}", participantID, itemID);
     }
 
     @Override

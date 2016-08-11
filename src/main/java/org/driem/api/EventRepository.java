@@ -17,23 +17,23 @@ public interface EventRepository {
      */
     void addParticipantToEvent(int eventID, Participant participant) throws NonUniqueParticipantNameException;
 
-    void removeParticipantFromEvent(int eventID, String name);
+    void removeParticipantFromEvent(int eventID, int participantID);
 
     void addActivityToEvent(int eventID, Activity activity);
 
     void removeActivity(int eventID, int activityID);
 
-    void addParticipantToActivity(int eventID, int activityID, String name);
+    void addParticipantToActivity(int eventID, int activityID, int participantID);
 
-    void removeParticipantFromActivity(int eventID, int activityID, String name);
+    void removeParticipantFromActivity(int eventID, int activityID, int participantID);
 
     void addItemToActivity(int eventID, int activityID, Item item);
 
     void removeItemFromActivity(int eventID, int activityID, int itemID);
 
-    void addParticipantToItem(int eventID, int activityID, int itemID, String name);
+    void addParticipantToItem(int eventID, int activityID, int itemID, int participantID);
 
-    void removeParticipantFromItem(int eventID, int activityID, int itemID, String name);
+    void removeParticipantFromItem(int eventID, int activityID, int itemID, int participantID);
 
 
     Event loadEvent(int id);

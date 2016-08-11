@@ -8,7 +8,7 @@ import java.util.Map;
 public class Activity {
     private String name;
     private String description;
-    private List<String> participants;
+    private List<Integer> participants;
     private double cost;
     private Map<Integer, Item> items = new HashMap<>();
     private int ID;
@@ -16,13 +16,12 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(String name, String desciption, int ID, List<String> participants, Map<Integer, Item> items) {
+    public Activity(String name, String description, int ID, List<Integer> participants, Map<Integer, Item> items) {
         this.name = name;
-        this.description = desciption;
+        this.description = description;
         this.participants = participants;
         this.items = items;
         this.ID = ID;
-
     }
 
     public String getName() {
@@ -41,11 +40,11 @@ public class Activity {
         this.description = description;
     }
 
-    public List<String> getParticipants() {
+    public List<Integer> getParticipants() {
         return participants;
     }
 
-    public void setParticipants(List<String> participants) {
+    public void setParticipants(List<Integer> participants) {
         this.participants = participants;
     }
 
@@ -65,12 +64,12 @@ public class Activity {
         this.ID = ID;
     }
 
-    public void addParticipant(String name){
-        participants.add(name);
+    public void addParticipant(int ID){
+        participants.add(ID);
     }
 
-    public void removeParticipant(String name){
-        participants.remove(name);
+    public void removeParticipant(int ID){
+        participants.remove(ID);
     }
 
     public void addItem(Item item){
@@ -81,11 +80,11 @@ public class Activity {
         items.remove(ID);
     }
 
-    public void addParticipantToItem(int ID, String name){
-        items.get(ID).addParticipant(name);
+    public void addParticipantToItem(int ID, int participantID){
+        items.get(ID).addParticipant(participantID);
     }
 
-    public void removeParticipantFromItem(int ID, String name){
-        items.get(ID).removeParticipant(name);
+    public void removeParticipantFromItem(int ID, int participantID){
+        items.get(ID).removeParticipant(participantID);
     }
 }
