@@ -1,18 +1,24 @@
 package org.driem.api;
 
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Activity {
-    private String name, desciption;
+    private String name;
+    private String description;
     private List<String> participants;
     private double cost;
     private Map<Integer, Item> items = new HashMap<>();
     private int ID;
 
+    public Activity() {
+    }
+
     public Activity(String name, String desciption, int ID, List<String> participants, Map<Integer, Item> items) {
         this.name = name;
-        this.desciption = desciption;
+        this.description = desciption;
         this.participants = participants;
         this.items = items;
         this.ID = ID;
@@ -27,12 +33,12 @@ public class Activity {
         this.name = name;
     }
 
-    public String getDesciption() {
-        return desciption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesciption(String desciption) {
-        this.desciption = desciption;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<String> getParticipants() {

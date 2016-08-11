@@ -49,4 +49,8 @@ public class EventService {
     public void addParticipantToEvent(int id, Participant participant) {
         eventRepository.addParticipantToEvent(id, participant);
     }
+
+    public void addActivityToEvent(int id, Activity activity) {
+        eventRepository.addActivityToEvent(id, activity);
+    }
 }

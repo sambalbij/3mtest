@@ -19,7 +19,7 @@ public interface EventRepository {
 
     void removeParticipantFromEvent(int eventID, String name);
 
-    void addActivityToEvent(int eventID, Activity a);
+    void addActivityToEvent(int eventID, Activity activity);
 
     void removeActivity(int eventID, int activityID);
 
@@ -27,7 +27,7 @@ public interface EventRepository {
 
     void removeParticipantFromActivity(int eventID, int activityID, String name);
 
-    void addItemToActivity(int eventID, int activityID, Item i);
+    void addItemToActivity(int eventID, int activityID, Item item);
 
     void removeItemFromActivity(int eventID, int activityID, int itemID);
 
