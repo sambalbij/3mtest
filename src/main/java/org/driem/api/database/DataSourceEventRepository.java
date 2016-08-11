@@ -48,12 +48,12 @@ public class DataSourceEventRepository implements EventRepository {
 
     @Override
     public void addParticipantToEvent(int eventID, Participant participant) throws NonUniqueParticipantNameException {
-
+        jdbcTemplate.update("INSERT INTO participants (name,event_id) VALUES (?,?)",participant.getName(),eventID);
     }
 
     @Override
     public void removeParticipantFromEvent(int eventID, int participantID) {
-
+        jdbcTemplate.update("DELETE * FROM participants WHERE id = ?",participantID);
     }
 
     @Override
@@ -71,12 +71,12 @@ public class DataSourceEventRepository implements EventRepository {
 
     @Override
     public void removeActivity(int eventID, int activityID) {
-
+        jdbcTemplate.update("DELETE * FROM activities where id = ?", activityID);
     }
 
     @Override
     public void addParticipantToActivity(int eventID, int activityID, int participantID) {
-
+        jdbcTemplate.update("INSERT INTO activity_participant (activity_id,participant_id) VALUES (?,?)",activityID,participantID);
     }
 
     @Override
