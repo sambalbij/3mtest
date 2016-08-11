@@ -28,7 +28,7 @@ public class DataSourceEventRepository implements EventRepository {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public DataSourceEventRepository(JdbcTemplate jdbcTemplate) {
+    public DataSourceEventRepository(@SuppressWarnings("SpringJavaAutowiringInspection") JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
