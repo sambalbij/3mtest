@@ -42,10 +42,9 @@ public class DataSourceEventRepository implements EventRepository {
     }
 
     @Override
-    public void storeEvent(Event event)
-    {
+    public void storeEvent(Event event) {
         int update = jdbcTemplate.update(
-                "INSERT INTO events (name, description, finished) VALUES (?,?,?,?)",
+                "INSERT INTO events (name, description, finished) VALUES (?,?,?)",
                 event.getName(),
                 event.getDescription(),
                 event.getFinished()
@@ -54,35 +53,34 @@ public class DataSourceEventRepository implements EventRepository {
 
     @Override
     public void addParticipantToEvent(int eventID, Participant participant) throws NonUniqueParticipantNameException {
-        jdbcTemplate.update("INSERT INTO participants (name,event_id) VALUES (?,?)",participant.getName(),eventID);
+        jdbcTemplate.update("INSERT INTO participants (name,event_id) VALUES (?,?)", participant.getName(), eventID);
     }
 
     @Override
     public void removeParticipantFromEvent(int eventID, int participantID) {
-        jdbcTemplate.update("DELETE * FROM participants WHERE id = ?",participantID);
+        jdbcTemplate.update("DELETE FROM participants WHERE id = ?", participantID);
     }
 
     @Override
-    public void addActivityToEvent(int eventID, Activity activity)
-    {
+    public void addActivityToEvent(int eventID, Activity activity) {
         int update = jdbcTemplate.update(
                 "INSERT INTO activities (name, description, cost, event_id) " +
                         "VALUES (?,?,?,?)",
-                        activity.getName(),
-                        activity.getDescription(),
-                        activity.getCost(),
-                        eventID
+                activity.getName(),
+                activity.getDescription(),
+                activity.getCost(),
+                eventID
         );
     }
 
     @Override
     public void removeActivity(int eventID, int activityID) {
-        jdbcTemplate.update("DELETE * FROM activities where id = ?", activityID);
+        jdbcTemplate.update("DELETE FROM activities where id = ?", activityID);
     }
 
     @Override
     public void addParticipantToActivity(int eventID, int activityID, int participantID) {
-        jdbcTemplate.update("INSERT INTO activity_participant (activity_id,participant_id) VALUES (?,?)",activityID,participantID);
+        jdbcTemplate.update("INSERT INTO activity_participant (activity_id,participant_id) VALUES (?,?)", activityID, participantID);
     }
 
     @Override
@@ -91,7 +89,7 @@ public class DataSourceEventRepository implements EventRepository {
                 "REMOVE FROM activity_participant WHERE activity_id = ? AND participant_id = ?",
                 activityID,
                 participantID
-                );
+        );
     }
 
     @Override
@@ -106,20 +104,17 @@ public class DataSourceEventRepository implements EventRepository {
     }
 
     @Override
-    public void removeItemFromActivity(int eventID, int activityID, int itemID)
-    {
+    public void removeItemFromActivity(int eventID, int activityID, int itemID) {
         jdbcTemplate.update("DELETE FROM items WHERE item_id = ? ", itemID);
     }
 
     @Override
-    public void addParticipantToItem(int eventID, int activityID, int itemID, int participantID)
-    {
-        jdbcTemplate.update("INSERT INTO activity_participant (participant_id, activity_id) VALUES (?,?)",participantID,activityID);
+    public void addParticipantToItem(int eventID, int activityID, int itemID, int participantID) {
+        jdbcTemplate.update("INSERT INTO participant_item (participant_id, item_id) VALUES (?,?)", participantID, itemID);
     }
 
     @Override
-    public void removeParticipantFromItem(int eventID, int activityID, int itemID, int participantID)
-    {
+    public void removeParticipantFromItem(int eventID, int activityID, int itemID, int participantID) {
         jdbcTemplate.update("DELETE FROM participant_item WHERE item_id = ? AND participant_id = ? ", itemID, participantID);
     }
 

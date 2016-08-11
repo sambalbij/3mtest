@@ -8,6 +8,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
@@ -18,6 +19,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -80,16 +82,17 @@ public class EventServiceTest {
     @Test
     public void findAllEvents_nonUniqueParticipant() {
         Event event = new Event(0, "test", "test description", false);
-        when(eventRepository.storeEvent(event)).thenThrow(new NonUniqueParticipantNameException("test"));
+        EventOverview eventOverview = new EventOverview(0, "test", "test description", false);
+        Mockito.doThrow(new NonUniqueParticipantNameException("test")).when(eventRepository).storeEvent(any(Event.class));
 
         try {
-            service.storeEvent(event);
+            service.storeEvent(eventOverview);
             fail("A NonUniqueParticipantNameException should have been thrown");
         } catch (NonUniqueParticipantNameException e) {
             // as expected
         }
 
-        verify(eventRepository, times(1)).storeEvent(eq(event));
+        verify(eventRepository, times(1)).storeEvent(any(Event.class));
     }
 
 
@@ -97,11 +100,11 @@ public class EventServiceTest {
     @Test
     public void storeEvent() throws Exception {
         Event event = new Event(0, "test", "test description", false);
-        when(eventRepository.storeEvent(event)).thenReturn(event);
+        EventOverview eventOverview = new EventOverview(0, "test", "test description", false);
 
-        service.storeEvent(event);
+        service.storeEvent(eventOverview);
 
-        verify(eventRepository, times(1)).storeEvent(eq(event));
+        verify(eventRepository, times(1)).storeEvent(any(Event.class));
     }
 
     private List<Event> allEvents() {

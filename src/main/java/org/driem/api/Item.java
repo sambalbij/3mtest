@@ -10,6 +10,9 @@ public class Item {
     private String description;
     private List<Integer> participants;
 
+    public Item() {
+    }
+
     public Item(int ID, double cost, String name, String description) {
         this(ID, cost, name, description, null);
     }
