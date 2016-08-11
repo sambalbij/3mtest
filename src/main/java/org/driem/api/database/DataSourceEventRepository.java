@@ -57,8 +57,16 @@ public class DataSourceEventRepository implements EventRepository {
     }
 
     @Override
-    public void addActivityToEvent(int eventID, Activity activity) {
-
+    public void addActivityToEvent(int eventID, Activity activity)
+    {
+        int update = jdbcTemplate.update(
+                "INSERT INTO activities (name, description, cost, event_id) " +
+                        "VALUES (?,?,?,?)",
+                        activity.getName(),
+                        activity.getDescription(),
+                        activity.getCost(),
+                        eventID
+        );
     }
 
     @Override
