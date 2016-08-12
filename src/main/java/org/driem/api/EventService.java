@@ -86,4 +86,17 @@ public class EventService {
     public void removeParticipantFromActivity(int eventId, int activityId, int participantId) {
         eventRepository.removeParticipantFromActivity(eventId, activityId, participantId);
     }
+
+    public Bill paySpecification(int eventID){
+
+        //fetch the event with ID eventID
+
+        //look at the cost of event,
+        return Bill;
+    }
+}
+
+class Bill{
+    //this should contain all participants and what they have to pay
+    //probably doesn't belong here
 }

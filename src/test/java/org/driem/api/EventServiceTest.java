@@ -150,12 +150,24 @@ public class EventServiceTest {
         event.addParticipantToItem(2,2,1);
 
         // total cost activity 1 = 50, no items, 2 participants
-        //P1: 25; P2: 25
+        // P1: 25;
+        // P2: 25
 
         // total cost activity 2 = 13.50, 3 participants
         // Item 1: 2.50, shared by P1, P2
         // Item 2: 5, for P1
         // remainder 13.50-(2.5-5) = 6 / 3 = 2 each
+        // Item 1 = 2.50/2 = 1.25 for P1 and P2 each
+        // Item 2 = 5 for P1
+        // P1: 2 + 1.25 + 5 = 8.25
+        // P2: 2 + 1.25 = 3.25
+        // P3: 2
+
+        // total for entire event
+        // P1: 33.25
+        // P2: 28.25
+        // P3: 2
+        // Sum: 63.50
 
 
     }
