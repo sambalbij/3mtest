@@ -17,7 +17,7 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(String name, String description, int ID, double cost) {
+    public Activity(int ID, String name, String description, double cost) {
         this(name, description, ID, cost, null, null);
     }
 

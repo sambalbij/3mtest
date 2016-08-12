@@ -107,6 +107,32 @@ public class EventServiceTest {
         verify(eventRepository, times(1)).storeEvent(any(Event.class));
     }
 
+    @Test
+    public void computeEndBillSimple() {
+
+        when(eventRepository.loadEvent(1)).thenReturn(createEvent(1));
+        EndBill endBill = service.computeEndBill(1);
+
+        verify(eventRepository, times(1)).loadEvent(1);
+        assertEquals(2,endBill.getPartipantToPays().size());
+        assertEquals(7.5,endBill.getPartipantToPays().get(1).getToPay(),0.1);
+        assertEquals(2.5,endBill.getPartipantToPays().get(2).getToPay(),0.1);
+    }
+
+    private Event createEvent(int id) {
+        Event event = new Event(id, "testevent", "dit is een test event", false);
+        event.addActivity(new Activity(1, "testactivity","dit is een test event",10.00));
+        event.addItemToActivity(1,new Item(1,5.0,"testitem","dit is een test item"));
+        event.addParticipant(new Participant("testParticipant1",1));
+        event.addParticipantToActivity(1,1);
+        event.addParticipantToItem(1,1,1);
+
+        event.addParticipant(new Participant("testParticipant2",2));
+        event.addParticipantToActivity(1,2);
+
+        return event;
+    }
+
     private List<Event> allEvents() {
         List<Event> all = new ArrayList<>();
         all.addAll(Arrays.asList(
@@ -114,4 +140,7 @@ public class EventServiceTest {
                 new Event(1, "Elasticon", "Business trip naar San Francisco", false)));
         return all;
     }
+
+
+
 }

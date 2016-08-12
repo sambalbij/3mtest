@@ -68,7 +68,6 @@ public class DataSourceEventRepository implements EventRepository {
 
     @Override
     public void removeParticipantFromEvent(int eventID, int participantID) {
-
         jdbcTemplate.update("DELETE FROM participant_item WHERE participant_id = ?", participantID);
         jdbcTemplate.update("DELETE FROM activity_participant WHERE participant_id = ?", participantID);
         jdbcTemplate.update("DELETE FROM participants WHERE id = ?", participantID);
@@ -215,7 +214,7 @@ public class DataSourceEventRepository implements EventRepository {
                     String foundDescription = resultSet.getString("description");
                     int foundId = resultSet.getInt("id");
                     double foundCost = resultSet.getDouble("cost");
-                    return new Activity(foundName, foundDescription, foundId, foundCost);
+                    return new Activity(foundId, foundName, foundDescription, foundCost);
                 });
     }
 

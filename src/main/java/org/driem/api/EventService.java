@@ -5,8 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -85,5 +84,36 @@ public class EventService {
 
     public void removeParticipantFromActivity(int eventId, int activityId, int participantId) {
         eventRepository.removeParticipantFromActivity(eventId, activityId, participantId);
+    }
+
+    public EndBill computeEndBill(int eventID) {
+        Event event = obtainEvent(eventID);
+        EndBill bill  = new EndBill();
+        event.getParticipants().values().forEach(participants -> bill.addEmptyParticipantToPay(participants));
+
+        for (Activity activity: event.getActivities().values()) {
+            double totalCostActivity = activity.getCost();
+            int activityParticipants = activity.getParticipants().size();
+            if (activityParticipants==0) {
+                continue;
+            }
+            for (Item item: activity.getItems().values()) {
+                // item betalen per participant
+                double costItem = item.getCost();
+                int itemparticipants = item.getParticipants().size();
+                if (itemparticipants == 0) {
+                    continue;
+                }
+                for (int participantID: item.getParticipants()) {
+                    bill.addAmountToParticipantToPay(participantID, + (costItem / itemparticipants));
+                }
+                totalCostActivity-=costItem;
+            }
+            // rest van de activity betalen
+            for (int id :activity.getParticipants())
+                bill.addAmountToParticipantToPay(id,+(totalCostActivity/activityParticipants));
+        }
+
+        return bill;
     }
 }

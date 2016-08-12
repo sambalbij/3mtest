@@ -101,4 +101,10 @@ public class EventController {
         eventService.removeParticipantFromItem(eventId, activityId, itemId, participantId);
     }
 
+    @RequestMapping(value = "/{eventId}/bill", method = GET)
+    public EndBill getBillForEvent(@PathVariable int eventId)
+    {
+        return eventService.computeEndBill(eventId);
+    }
+
 }

@@ -1,6 +1,7 @@
 package org.driem.api;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Item {
@@ -15,6 +16,7 @@ public class Item {
 
     public Item(int ID, double cost, String name, String description) {
         this(ID, cost, name, description, null);
+        participants = new ArrayList<>();
     }
 
     public Item(int ID, double cost, String name, String description, List<Integer> participants) {
