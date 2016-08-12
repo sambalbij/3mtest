@@ -105,13 +105,13 @@ public class EventService {
                     continue;
                 }
                 for (int participantID: item.getParticipants()) {
-                    bill.addAmountToParticipantToPay(participantID, + (costItem / itemparticipants));
+                    bill.addAmountToParticipantToPay(participantID, + (costItem / itemparticipants),"Item: " + item.getName());
                 }
                 totalCostActivity-=costItem;
             }
             // rest van de activity betalen
             for (int id :activity.getParticipants())
-                bill.addAmountToParticipantToPay(id,+(totalCostActivity/activityParticipants));
+                bill.addAmountToParticipantToPay(id,+(totalCostActivity/activityParticipants),"Activity: " + activity.getName());
         }
 
         return bill;

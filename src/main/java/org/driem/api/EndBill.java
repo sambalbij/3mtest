@@ -11,12 +11,12 @@ public class EndBill {
 
     public void addEmptyParticipantToPay(Participant participant)
     {
-        partipantToPays.put(participant.getId(),new ParticipantToPay(participant,0.0));
+        partipantToPays.put(participant.getId(),new ParticipantToPay(participant));
     }
 
-    public void addAmountToParticipantToPay(int id, double amount)
+    public void addAmountToParticipantToPay(int id, double amount, String description)
     {
-        partipantToPays.get(id).addToPay(amount);
+        partipantToPays.get(id).addToPay(description,amount);
     }
 
     public Map<Integer, ParticipantToPay> getPartipantToPays() {
@@ -24,3 +24,5 @@ public class EndBill {
     }
 
 }
+
+
