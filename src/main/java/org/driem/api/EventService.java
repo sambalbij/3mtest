@@ -96,13 +96,15 @@ public class EventService {
         //fetch the event, its activities and its participants
         Event event = obtainEvent(eventID);
         Map<Integer, Participant> participantMap = event.getParticipants();
+        for (Map.Entry<Integer,Participant> participant : participantMap.entrySet()){
+            bill.put(participant.getKey(),0.0);
+        }
+
         Map<Integer, Activity> activityMap = event.getActivities();
         double eventCost; //total cost of event, sum of activity costs
 
         for (Map.Entry<Integer, Activity> activityEntry : activityMap.entrySet()) {
-            //Integer key = entry.getKey();
-            Integer activityID = activityEntry.getKey();
-            //Activity value = entry.getValue();
+            //Integer activityID = activityEntry.getKey();
             Activity activity = activityEntry.getValue();
             double activityCost = activity.getCost();
 

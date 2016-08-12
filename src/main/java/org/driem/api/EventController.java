@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -101,4 +102,8 @@ public class EventController {
         eventService.removeParticipantFromItem(eventId, activityId, itemId, participantId);
     }
 
+    @RequestMapping(value = "/{id}/bill", method = GET)
+    public Map obtainBill(@PathVariable int id) {
+        return eventService.makeBill(id);
+    }
 }

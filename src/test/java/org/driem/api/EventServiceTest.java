@@ -128,7 +128,7 @@ public class EventServiceTest {
         Activity activity2 = new Activity("Activity 2","with items",2,13.50);
 
         Item item1 = new Item(1,2.5,"Item 1","tweevijftig");
-        Item item2 = new Item(1,5,"Item","vijf");
+        Item item2 = new Item(2,5,"Item","vijf");
 
         event.addParticipant(participant1);
         event.addParticipant(participant2);
@@ -148,6 +148,7 @@ public class EventServiceTest {
 
         event.addParticipantToItem(2,1,1);
         event.addParticipantToItem(2,1,2);
+        event.addParticipantToItem(2,2,1);
         event.addParticipantToItem(2,2,1);
 
         // total cost activity 1 = 50, no items, 2 participants
@@ -169,10 +170,8 @@ public class EventServiceTest {
         // P2: 28.25
         // P3: 2
         // Sum: 63.50
-
+        when(eventRepository.loadEvent(0)).thenReturn(event);
         Map<Integer,Double> billMap = service.makeBill(0);
         assertEquals("P1 has 33.25",33.25,billMap.get(1),0.01);
-
-
     }
 }
