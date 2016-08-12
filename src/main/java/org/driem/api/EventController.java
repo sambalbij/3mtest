@@ -70,6 +70,11 @@ public class EventController {
         eventService.addParticipantToActivity(eventId, activityId, participantId);
     }
 
+    @RequestMapping(value = "/{eventId}/activity/{activityId}/participant/{participantId}", method = DELETE)
+    public void removeParticipantFromActivity(@PathVariable int eventId, @PathVariable int activityId, @PathVariable int participantId) {
+        eventService.removeParticipantFromActivity(eventId, activityId, participantId);
+    }
+
     @RequestMapping(value = "/{eventId}/activity/{activityId}/item", method = POST)
     public void addItemToActivity(@PathVariable int eventId, @PathVariable int activityId, @RequestBody Item item) {
         eventService.addItemToActivity(eventId, activityId, item);

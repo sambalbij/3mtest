@@ -11,12 +11,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.rowset.serial.SerialArray;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -26,10 +34,12 @@ public class DataSourceEventRepository implements EventRepository {
     private static final Logger logger = LoggerFactory.getLogger(DataSourceEventRepository.class);
 
     private final JdbcTemplate jdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Autowired
-    public DataSourceEventRepository(@SuppressWarnings("SpringJavaAutowiringInspection") JdbcTemplate jdbcTemplate) {
+    public DataSourceEventRepository(@SuppressWarnings("SpringJavaAutowiringInspection") JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
 
@@ -80,7 +90,7 @@ public class DataSourceEventRepository implements EventRepository {
     @Override
     public void removeActivity(int eventID, int activityID) {
         // Find items
-        List<Integer> itemList = jdbcTemplate.queryForList("SELECT id FROM item WHERE activity_id = ?",Integer.class,activityID);
+        List<Integer> itemList = jdbcTemplate.queryForList("SELECT id FROM items WHERE activity_id = ?",Integer.class,activityID);
         // Remove items from activity
         for (Integer item : itemList) {
                 removeItemFromActivity(eventID,activityID,item);
@@ -104,8 +114,12 @@ public class DataSourceEventRepository implements EventRepository {
         List<Integer> ids = jdbcTemplate.queryForList("SELECT id FROM items WHERE activity_id = ?",
                 new Object[] {activityID}, Integer.class);
 
-        jdbcTemplate.update("DELETE FROM participant_item WHERE participant_id = ? AND item_id IN ?",
-                participantID,ids);
+        MapSqlParameterSource parameters = new MapSqlParameterSource();
+        parameters.addValue("ids", new HashSet<>(ids));
+        parameters.addValue("participantId", participantID);
+
+        namedParameterJdbcTemplate.update("DELETE FROM participant_item WHERE participant_id = :participantId AND item_id IN (:ids)",
+                parameters);
 
         jdbcTemplate.update(
                 "DELETE FROM activity_participant WHERE activity_id = ? AND participant_id = ?",
