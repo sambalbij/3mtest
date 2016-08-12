@@ -71,7 +71,23 @@ public class EventService {
     }
 
     public void addParticipantToItem(int eventId, int activityId, int itemId, int participantId) {
+
+        Event event = eventRepository.loadEvent(eventId);
+        if (event.getParticipants() != null && !event.getParticipants().containsKey(participantId)){
+            throw new IllegalArgumentException("Participant does not exist in this event");
+        }
+        else if (participantNotInActivity(event, activityId, participantId)) {
+            eventRepository.addParticipantToActivity(eventId,activityId,participantId);
+        }
         eventRepository.addParticipantToItem(eventId,activityId, itemId, participantId);
+    }
+
+    private boolean participantNotInActivity(Event event, int activityId, int participantId){
+        Activity activity = event.getActivities().get(activityId);
+        if (activity == null){
+            throw new IllegalArgumentException("Activity with id "+activityId+" does not exist");
+        }
+        return !activity.getParticipants().contains(participantId);
     }
 
     public void removeItemFromActivity(int eventId, int activityId, int itemId) {
