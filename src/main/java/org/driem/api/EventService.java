@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -87,16 +89,47 @@ public class EventService {
         eventRepository.removeParticipantFromActivity(eventId, activityId, participantId);
     }
 
-    public Bill paySpecification(int eventID){
+    public Map makeBill(int eventID){
+        // the integer will have the participantID and double will hold the to-pay value
+        Map<Integer,Double> bill = new HashMap<>();
 
-        //fetch the event with ID eventID
+        //fetch the event, its activities and its participants
+        Event event = obtainEvent(eventID);
+        Map<Integer, Participant> participantMap = event.getParticipants();
+        Map<Integer, Activity> activityMap = event.getActivities();
+        double eventCost; //total cost of event, sum of activity costs
 
-        //look at the cost of event,
-        return Bill;
+        for (Map.Entry<Integer, Activity> activityEntry : activityMap.entrySet()) {
+            //Integer key = entry.getKey();
+            Integer activityID = activityEntry.getKey();
+            //Activity value = entry.getValue();
+            Activity activity = activityEntry.getValue();
+            double activityCost = activity.getCost();
+
+            List<Integer> activityParticipants = activity.getParticipants();
+
+            Map<Integer, Item> itemMap = activity.getItems();
+
+            //then you also need to find the cost of individual items, and subtract these from the activityCost
+            //the remainder activityCost is to be divided equally over participants
+            for (Map.Entry<Integer, Item> itemEntry : itemMap.entrySet()){
+                // get all items I guess
+                Item item = itemEntry.getValue();
+                double itemCost = item.getCost();
+                List<Integer> itemParticipants = item.getParticipants();
+                if (itemParticipants.size() > 0){
+                    activityCost = activityCost - itemCost; // only needed if item is actually ordered by at least 1 participant
+                    double partialCost = itemCost / itemParticipants.size();
+                    for(int i:itemParticipants){
+                        bill.put(i, bill.get(i) + partialCost);
+                    }
+                }
+            }
+
+            for(int i:activityParticipants) {
+                bill.put(i, bill.get(i) + activityCost / activityParticipants.size());
+            }
+        }
+        return bill;
     }
-}
-
-class Bill{
-    //this should contain all participants and what they have to pay
-    //probably doesn't belong here
 }

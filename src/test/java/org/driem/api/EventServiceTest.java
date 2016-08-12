@@ -15,6 +15,7 @@ import org.mockito.junit.MockitoRule;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -168,6 +169,9 @@ public class EventServiceTest {
         // P2: 28.25
         // P3: 2
         // Sum: 63.50
+
+        Map<Integer,Double> billMap = service.makeBill(0);
+        assertEquals("P1 has 33.25",33.25,billMap.get(1),0.01);
 
 
     }
