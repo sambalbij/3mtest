@@ -58,12 +58,16 @@ public class DataSourceEventRepository implements EventRepository {
 
     @Override
     public void removeParticipantFromEvent(int eventID, int participantID) {
+
+        jdbcTemplate.update("DELETE FROM participant_item WHERE participant_id = ?", participantID);
+        jdbcTemplate.update("DELETE FROM activity_participant WHERE participant_id = ?", participantID);
         jdbcTemplate.update("DELETE FROM participants WHERE id = ?", participantID);
+
     }
 
     @Override
     public void addActivityToEvent(int eventID, Activity activity) {
-        int update = jdbcTemplate.update(
+        jdbcTemplate.update(
                 "INSERT INTO activities (name, description, cost, event_id) " +
                         "VALUES (?,?,?,?)",
                 activity.getName(),
@@ -97,8 +101,8 @@ public class DataSourceEventRepository implements EventRepository {
 
     @Override
     public void removeParticipantFromActivity(int eventID, int activityID, int participantID) {
-        int update = jdbcTemplate.update(
-                "REMOVE FROM activity_participant WHERE activity_id = ? AND participant_id = ?",
+
+        jdbcTemplate.update("DELETE FROM activity_participant WHERE activity_id = ? AND participant_id = ?",
                 activityID,
                 participantID
         );
@@ -106,7 +110,7 @@ public class DataSourceEventRepository implements EventRepository {
 
     @Override
     public void addItemToActivity(int eventID, int activityID, Item item) {
-        int update = jdbcTemplate.update(
+        jdbcTemplate.update(
                 "INSERT INTO items (name, description, cost, activity_id) VALUES (?,?,?,?)",
                 item.getName(),
                 item.getDescription(),
@@ -117,6 +121,7 @@ public class DataSourceEventRepository implements EventRepository {
 
     @Override
     public void removeItemFromActivity(int eventID, int activityID, int itemID) {
+        jdbcTemplate.update("DELETE FROM participant_item WHERE item_id = ? ", itemID);
         jdbcTemplate.update("DELETE FROM items WHERE id = ? ", itemID);
     }
 
