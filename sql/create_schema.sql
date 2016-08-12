@@ -16,6 +16,16 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Current Database: `m3prod`
+--
+
+/*!40000 DROP DATABASE IF EXISTS `m3prod`*/;
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `m3prod` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `m3prod`;
+
+--
 -- Table structure for table `activities`
 --
 
@@ -69,7 +79,7 @@ CREATE TABLE `events` (
   `description` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,4 +145,9 @@ CREATE TABLE `participants` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-12 15:31:55
+-- Dump completed on 2016-08-12 16:05:34
+
+ALTER TABLE events AUTO_INCREMENT = 1;
+ALTER TABLE activities AUTO_INCREMENT = 1;
+ALTER TABLE items AUTO_INCREMENT = 1;
+ALTER TABLE participants AUTO_INCREMENT = 1;
