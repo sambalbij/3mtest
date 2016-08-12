@@ -114,4 +114,49 @@ public class EventServiceTest {
                 new Event(1, "Elasticon", "Business trip naar San Francisco", false)));
         return all;
     }
+
+    @Test
+    public void testBill() throws Exception {
+        // create an event, with activities, with costs, with subitems, and participants
+        Event event = new Event(0,"test","test description",false);
+        Participant participant1 = new Participant("P1",1);
+        Participant participant2 = new Participant("P2",2);
+        Participant participant3 = new Participant("P3",3);
+
+        Activity activity1 = new Activity("Activity 1","no items",1,50);
+        Activity activity2 = new Activity("Activity 2","with items",2,13.50);
+
+        Item item1 = new Item(1,2.5,"Item 1","tweevijftig");
+        Item item2 = new Item(1,5,"Item","vijf");
+
+        event.addParticipant(participant1);
+        event.addParticipant(participant2);
+        event.addParticipant(participant3);
+
+        event.addActivity(activity1);
+        event.addActivity(activity2);
+
+        event.addItemToActivity(2,item1);
+        event.addItemToActivity(2,item2);
+
+        event.addParticipantToActivity(1,1);
+        event.addParticipantToActivity(1,2);
+        event.addParticipantToActivity(2,1);
+        event.addParticipantToActivity(2,2);
+        event.addParticipantToActivity(2,3);
+
+        event.addParticipantToItem(2,1,1);
+        event.addParticipantToItem(2,1,2);
+        event.addParticipantToItem(2,2,1);
+
+        // total cost activity 1 = 50, no items, 2 participants
+        //P1: 25; P2: 25
+
+        // total cost activity 2 = 13.50, 3 participants
+        // Item 1: 2.50, shared by P1, P2
+        // Item 2: 5, for P1
+        // remainder 13.50-(2.5-5) = 6 / 3 = 2 each
+
+
+    }
 }
