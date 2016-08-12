@@ -74,4 +74,12 @@ public class EventService {
     public void addParticipantToItem(int eventId, int activityId, int itemId, int participantId) {
         eventRepository.addParticipantToItem(eventId,activityId, itemId, participantId);
     }
+
+    public void removeItemFromActivity(int eventId, int activityId, int itemId) {
+        eventRepository.removeItemFromActivity(eventId, activityId, itemId);
+    }
+
+    public void removeParticipantFromItem(int eventId, int activityId, int itemId, int participantId) {
+        eventRepository.removeParticipantFromItem(eventId, activityId, itemId, participantId);
+    }
 }

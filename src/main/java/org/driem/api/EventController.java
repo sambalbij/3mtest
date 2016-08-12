@@ -71,16 +71,29 @@ public class EventController {
     }
 
     @RequestMapping(value = "/{eventId}/activity/{activityId}/item", method = POST)
-    public void addParticipantToActivity(@PathVariable int eventId, @PathVariable int activityId, @RequestBody Item item) {
+    public void addItemToActivity(@PathVariable int eventId, @PathVariable int activityId, @RequestBody Item item) {
         eventService.addItemToActivity(eventId, activityId, item);
     }
 
     @RequestMapping(value = "/{eventId}/activity/{activityId}/item/{itemId}/participant/{participantId}", method = POST)
-    public void addParticipantToActivity(@PathVariable int eventId,
+    public void addParticipantToItem(@PathVariable int eventId,
                                          @PathVariable int activityId,
                                          @PathVariable int itemId,
                                          @PathVariable int participantId) {
         eventService.addParticipantToItem(eventId, activityId, itemId, participantId);
+    }
+
+    @RequestMapping(value = "/{eventId}/activity/{activityId}/item/{itemId}", method = DELETE)
+    public void removeItemFromActivity(@PathVariable int eventId, @PathVariable int activityId, @PathVariable int itemId) {
+        eventService.removeItemFromActivity(eventId, activityId, itemId);
+    }
+
+    @RequestMapping(value = "/{eventId}/activity/{activityId}/item/{itemId}/participant/{participantId}", method = DELETE)
+    public void removeParticipantFromItem(@PathVariable int eventId,
+                                         @PathVariable int activityId,
+                                         @PathVariable int itemId,
+                                         @PathVariable int participantId) {
+        eventService.removeParticipantFromItem(eventId, activityId, itemId, participantId);
     }
 
 }
