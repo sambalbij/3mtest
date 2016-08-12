@@ -9,21 +9,14 @@ import java.util.List;
 public class ParticipantToPay {
     private Participant participant;
     private double toPay;
-
-    public List<BillItem> getBillItems() {
-        return billItems;
-    }
-
-    public void setBillItems(List<BillItem> billItems) {
-        this.billItems = billItems;
-    }
-
-    private List<BillItem> billItems;
+    private double payed;
+     private List<BillItem> billItems;
 
     public ParticipantToPay(Participant participant) {
         this.participant = participant;
         this.toPay = 0.0;
         this.billItems = new ArrayList<>();
+        this.payed = 0.0;
     }
 
     public Participant getParticipant() {
@@ -46,5 +39,25 @@ public class ParticipantToPay {
         billItems.add(new BillItem(description,toPay));
         this.toPay += toPay;
     }
+
+    public double getPayed() {
+        return payed;
+    }
+
+    public void setPayed(double payed) {
+        this.payed = payed;
+    }
+
+    public void addPayement(double amount)    {
+        payed+=amount;
+    }
+    public List<BillItem> getBillItems() {
+        return billItems;
+    }
+
+    public void setBillItems(List<BillItem> billItems) {
+        this.billItems = billItems;
+    }
+
 
 }

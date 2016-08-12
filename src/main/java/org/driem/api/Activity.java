@@ -13,6 +13,7 @@ public class Activity {
     private double cost;
     private Map<Integer, Item> items = new HashMap<>();
     private int ID;
+    private int payer=-1;
 
     public Activity() {
     }
@@ -104,5 +105,13 @@ public class Activity {
 
     public void setItems(Map<Integer, Item> items) {
         this.items = items;
+    }
+
+    public int getPayer() {
+        return payer;
+    }
+
+    public void setPayer(int payer) {
+        this.payer = payer;
     }
 }

@@ -178,6 +178,11 @@ public class DataSourceEventRepository implements EventRepository {
         return event;
     }
 
+    @Override
+    public void setPayerToActivity(int eventID, int activityID, int payerID) {
+        jdbcTemplate.update("INSERT INTO activities (buyer_id) WHERE activity_id = ? VALUES (?)", activityID, payerID);
+    }
+
     private List<Participant> loadParticipantsForEvent(int id) {
         return jdbcTemplate.query("select * from participants where event_id = ?",
                 new Object[]{id}, (resultSet, i) -> {

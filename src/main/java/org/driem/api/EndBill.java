@@ -23,6 +23,7 @@ public class EndBill {
         return partipantToPays;
     }
 
+    public void addPaymentToPayer(int id, double amount){
+        partipantToPays.get(id).addPayement(amount);
+    }
 }
-
-

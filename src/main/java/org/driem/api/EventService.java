@@ -128,6 +128,11 @@ public class EventService {
             // rest van de activity betalen
             for (int id :activity.getParticipants())
                 bill.addAmountToParticipantToPay(id,+(totalCostActivity/activityParticipants),"Activity: " + activity.getName());
+
+            if (activity.getPayer()!=-1)
+            {
+                bill.addPaymentToPayer(activity.getPayer(),activity.getCost());
+            }
         }
 
         return bill;

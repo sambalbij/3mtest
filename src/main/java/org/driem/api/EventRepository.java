@@ -35,6 +35,8 @@ public interface EventRepository {
 
     void removeParticipantFromItem(int eventID, int activityID, int itemID, int participantID);
 
+    void setPayerToActivity(int eventID, int activityID, int payerID);
+
 
     Event loadEvent(int id);
 }

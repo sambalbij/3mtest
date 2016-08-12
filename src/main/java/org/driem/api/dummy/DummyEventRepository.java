@@ -107,4 +107,9 @@ public class DummyEventRepository implements EventRepository {
         Event event1 = new Event(id, name, description, false);
         this.storeEvent(event1);
     }
+
+    @Override
+    public void setPayerToActivity(int eventID, int activityID, int payerID) {
+       events.get(eventID).getActivities().get(activityID).setPayer(payerID);
+    }
 }
