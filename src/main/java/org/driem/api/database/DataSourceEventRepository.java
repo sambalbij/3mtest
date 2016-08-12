@@ -75,7 +75,19 @@ public class DataSourceEventRepository implements EventRepository {
 
     @Override
     public void removeActivity(int eventID, int activityID) {
+        // Find items
+        List<Integer> itemList = jdbcTemplate.queryForList("SELECT id FROM item WHERE activity_id = ?",Integer.class,activityID);
+        // Remove items from activity
+        for (Integer item : itemList) {
+                removeItemFromActivity(eventID,activityID,item);
+        }
+
+        // Delete participants from activity
+        jdbcTemplate.update("DELETE FROM activity_participant WHERE activity_id = ?", activityID);
+
+        // Delete Activity itself
         jdbcTemplate.update("DELETE FROM activities where id = ?", activityID);
+
     }
 
     @Override
