@@ -1,32 +1,28 @@
-<div class="col-xs-12 col-sm-9">
-    <p class="pull-right visible-xs">
-        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-    </p>
-    <div class="jumbotron">
-        <h1>M3 Event Finance</h1>
-        <p>Track what is paid and who needs to pay.</p>
+<div class="row row-eq-height">
+    <div class="col-md-4">
+        <button title="Add Event" type="button" class="btn btn-link" aria-label="Centered">
+            <span class="glyphicon glyphicon-plus-sign large-button" aria-hidden="true"></span>
+        </button>
     </div>
-    <div class="row">
-        <div class="col-xs-6 col-lg-4" ng-repeat="the_event in vm.events">
-            <h2>{{the_event.name}}</h2>
-            <p>{{the_event.description}}</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-    </div><!--/row-->
-</div><!--/.col-xs-12.col-sm-9-->
+    <div class="col-md-4" ng-repeat="the_event in vm.events">
+        <h2>{{the_event.name}}</h2>
+        <p>{{the_event.description}}</p>
+        <p><a class="btn btn-default btn-custom" href="#" role="button">View details &raquo;</a></p>
+    </div>
+</div>
 
-<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-    <h2>Create new event</h2>
-    <form>
-        <div class="form-group">
-            <label for="newEventName">Name</label>
-            <input type="text" class="form-control" id="newEventName" placeholder="Name" ng-model="vm.newEvent.name">
-        </div>
-        <div class="form-group">
-            <label for="newEventDescription">Description</label>
-            <input type="text" class="form-control" id="newEventDescription" placeholder="Description"
-                   ng-model="vm.newEvent.description">
-        </div>
-        <button type="button" class="btn btn-primary" ng-click="vm.create_event()">Create Event</button>
-    </form>
-</div><!--/.sidebar-offcanvas-->
+<!--<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">-->
+<!--<h2>Create new event</h2>-->
+<!--<form>-->
+<!--<div class="form-group">-->
+<!--<label for="newEventName">Name</label>-->
+<!--<input type="text" class="form-control" id="newEventName" placeholder="Name" ng-model="vm.newEvent.name">-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--<label for="newEventDescription">Description</label>-->
+<!--<input type="text" class="form-control" id="newEventDescription" placeholder="Description"-->
+<!--ng-model="vm.newEvent.description">-->
+<!--</div>-->
+<!--<button type="button" class="btn btn-primary" ng-click="vm.create_event()">Create Event</button>-->
+<!--</form>-->
+<!--</div>&lt;!&ndash;/.sidebar-offcanvas&ndash;&gt;-->

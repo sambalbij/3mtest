@@ -9,9 +9,10 @@ front2:fd3e81
 
 */
 
-.jumbotron{
-    background-color: #ff00ae;
+.header{
+    background-color: #fd3e81;
     color: #2f2d2e;
+    margin: 20px 0;
 }
 .large-button{
     font-size:20em;
@@ -50,4 +51,15 @@ h4 {
     background-color: #41292C;
     margin: 10px;
 }z
+
+.btn-custom {
+    background-color: #fd3e81;
+    color: #2f2d2e;
+    border-color: #792359;
+}
+
+.btn-custom:hover {
+    background-color: #ff00ae;
+    border-color: #792359;
+}
 
