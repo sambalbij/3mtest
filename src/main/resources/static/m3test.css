@@ -1,0 +1,53 @@
+/*https://coolors.co/2f2d2e-41292c-792359-fd3e81-ff00ae
+
+background1: 2f2d2e
+background2: 41292c
+middle: 792359
+front1:ff00ae
+front2:fd3e81
+
+
+*/
+
+.jumbotron{
+    background-color: #ff00ae;
+    color: #2f2d2e;
+}
+.large-button{
+    font-size:20em;
+    color: #fd3e81;
+}
+
+body{
+    background-color: #2f2d2e;
+    color: #fd3e81;
+}
+.row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+h4 {
+    margin-top: 25px;
+}
+.row {
+    margin-bottom: 20px;
+}
+.row .row {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+[class*="col-"] {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #41292C;
+    margin: 10px;
+}
+
