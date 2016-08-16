@@ -16,7 +16,8 @@
         var service = {
             obtain_events: obtain_events,
             store_event: store_event,
-            obtain_event: obtain_event
+            obtain_event: obtain_event,
+            add_participant_to_event: add_participant_to_event
         };
 
         return service;
@@ -42,7 +43,7 @@
                     callback(true, results.data.id);
                 }, function (error) {
                     $log.error("Error while storing event", theEvent, error);
-                    notificationService.add("error","Error while storing event");
+                    notificationService.error("Error while storing event");
                     callback(false, "Error while storing event");
                 });
         }
@@ -56,6 +57,20 @@
                     $log.error("Error while obtaining event with id " + id, error);
                     callback({});
                 })
+        }
+
+        function add_participant_to_event(eventId, participant, callback) {
+            participant.id =
+            $http.post('/event/' + eventId + '/participant', participant)
+                .then(function (results) {
+                    $log.debug("Result from posting new event", results);
+                    notificationService.info("Added new participant '" + participant.name + "'to event");
+                    callback();
+                }, function (error) {
+                    $log.error("Error while adding participant", participant, error);
+                    notificationService.error("Error while adding participant '" + participant.name + "' to event");
+                });
+
         }
     }
 })();

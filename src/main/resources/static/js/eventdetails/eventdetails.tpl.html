@@ -1,8 +1,11 @@
 <div class="row row-eq-height">
     <div class="col-md-12">
-        <i class="glyphicon glyphicon-user pull-right"></i>
         <h1>{{vm.event.name}}</h1>
         <p>{{vm.event.description}}</p>
+        <div>
+            <span class="label label-default label-participant" ng-repeat="(id,participant) in vm.event.participants">{{participant.name}} <button class="btn btn-sm btn-link"><i class="glyphicon glyphicon-remove"></i></button></span>
+            <span><button class="btn btn-link btn-sm btn-participant" ng-click="vm.add_participant(vm.event.id)"><i class="glyphicon glyphicon-plus"></i></button></span>
+        </div>
     </div>
 </div>
 <hr />

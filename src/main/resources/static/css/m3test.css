@@ -45,3 +45,21 @@ body{
     border-color: #792359;
 }
 
+.label-participant {
+    margin-right: 5px;
+}
+
+.label-participant button {
+    color: white;
+}
+.label-participant button:hover {
+    color: silver;
+}
+
+button.btn-participant {
+    color: #fd3e81;
+}
+
+button.btn-participant:hover {
+    color: #792359;
+}
