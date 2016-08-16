@@ -18,6 +18,9 @@ front2:fd3e81
     font-size:20em;
     color: #fd3e81;
 }
+.large-button:hover{
+    color: #792359;
+}
 
 body{
     background-color: #2f2d2e;
@@ -59,7 +62,7 @@ h4 {
 }
 
 .btn-custom:hover {
-    background-color: #ff00ae;
+    background-color: #792359;
     border-color: #792359;
 }
 

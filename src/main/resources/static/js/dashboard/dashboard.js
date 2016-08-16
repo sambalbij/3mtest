@@ -1,4 +1,3 @@
-// bar-module
 (function () {
     'use strict';
     angular.module('m3test.dashboard', [

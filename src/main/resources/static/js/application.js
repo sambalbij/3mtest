@@ -13,9 +13,10 @@
     angular.module('m3testApp')
         .config(defaultRouteConfig);
 
-    defaultRouteConfig.$inject = ['$urlRouterProvider'];
+    defaultRouteConfig.$inject = ['$urlRouterProvider','$logProvider'];
 
-    function defaultRouteConfig($urlRouterProvider) {
+    function defaultRouteConfig($urlRouterProvider,$logProvider) {
         $urlRouterProvider.otherwise("/dashboard");
+        $logProvider.debugEnabled(true);
     }
 })();

@@ -23,6 +23,7 @@
         function obtain_events(callback) {
             $http.get('/event')
                 .then(function (results) {
+                    $log.debug("Obtained events",results);
                     callback(results.data);
                 }, function (error) {
                     $log.error("Error while obtaining events", error);
@@ -31,12 +32,14 @@
         }
 
         function store_event(theEvent, callback) {
+            // TODO: Think about using broadcasting for error handling
             $http.post('/event', theEvent)
                 .then(function (results) {
-                    callback("New event is stored");
+                    $log.debug("Result from postinng new event", results);
+                    callback(true);
                 }, function (error) {
                     $log.error("Error while storing event", theEvent, error);
-                    callback("Error while storing event");
+                    callback(false, "Error while storing event");
                 });
         }
     }
