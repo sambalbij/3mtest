@@ -3,7 +3,8 @@
     'use strict';
     angular.module('m3testApp', [
         'ui.router',
-        'm3test.dashboard'
+        'm3test.dashboard',
+        'm3test.eventdetails'
     ]);
 })();
 

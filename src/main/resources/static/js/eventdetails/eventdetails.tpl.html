@@ -1,0 +1,40 @@
+<div class="row row-eq-height">
+    <div class="col-md-12">
+        <i class="glyphicon glyphicon-user pull-right"></i>
+        <h1>{{vm.event.name}}</h1>
+        <p>{{vm.event.description}}</p>
+    </div>
+</div>
+<hr />
+<div class="activity" ng-repeat="activity in vm.event.activities">
+    <div class="row row-eq-height">
+        <div class="col-md-12">
+            <i class="glyphicon glyphicon-user pull-right"></i>
+            <h2>{{activity.name}}</h2>
+            <p>Activity description</p>
+        </div>
+    </div>
+    <div class="row items row-eq-height">
+        <div class="col-md-4" ng-repeat="item in activity.items">
+            <div class="item">
+                <i class="glyphicon glyphicon-user pull-right"></i>
+                <h2>{{item.name}}</h2>
+                <p>{{item.description}}</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="item additem">
+                <button title="Add Event" type="button" class="btn btn-link" aria-label="Centered">
+                    <span class="glyphicon glyphicon-plus-sign large-button" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row items row-eq-height">
+    <div class="col-md-12 text-right">
+        <button type="button" class="btn btn-info">+ Add activity</button>
+    </div>
+</div>

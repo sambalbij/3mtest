@@ -7,7 +7,7 @@
     <div class="col-md-4" ng-repeat="the_event in vm.events">
         <h2>{{the_event.name}}</h2>
         <p>{{the_event.description}}</p>
-        <p><button class="btn btn-default btn-custom">View details &raquo;</button></p>
+        <p><a href="#/eventdetails/{{the_event.id}}" class="btn btn-default btn-custom">View details &raquo;</a></p>
     </div>
 </div>
 

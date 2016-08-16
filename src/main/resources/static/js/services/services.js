@@ -15,7 +15,8 @@
     function EventsService($http, $log) {
         var service = {
             obtain_events: obtain_events,
-            store_event: store_event
+            store_event: store_event,
+            obtain_event: obtain_event
         };
 
         return service;
@@ -41,6 +42,17 @@
                     $log.error("Error while storing event", theEvent, error);
                     callback(false, "Error while storing event");
                 });
+        }
+
+        function obtain_event(id, callback){
+            $http.get('event/'+id)
+                .then(function (result) {
+                    $log.debug("Obtained event with id" + id, result);
+                    callback(result.data);
+                }, function (error){
+                    $log.error("Error while obtaining event with id " + id, error);
+                    callback({});
+                })
         }
     }
 })();
