@@ -46,6 +46,7 @@
         }
 
         function create_event() {
+            vm.newEvent.finished = false;
             eventsservice.store_event(vm.newEvent, function (ok, message) {
                 if (ok) {
                     obtain_events();
