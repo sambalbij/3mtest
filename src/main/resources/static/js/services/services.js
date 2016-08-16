@@ -17,7 +17,8 @@
             obtain_events: obtain_events,
             store_event: store_event,
             obtain_event: obtain_event,
-            add_participant_to_event: add_participant_to_event
+            add_participant_to_event: add_participant_to_event,
+            remove_participant_from_event:remove_participant_from_event
         };
 
         return service;
@@ -70,6 +71,19 @@
                     notificationService.error("Error while adding participant '" + participant.name + "' to event");
                 });
 
+        }
+        
+        function remove_participant_from_event(eventId, participantId, callback) {
+            $http.delete('/event/'+eventId+'/participant/'+participantId)
+                .then(function (results) {
+                    $log.debug("Result from removing participant", results);
+                    notificationService.info("Removed participant '" + participantId + "'from event");
+                    callback();
+                }, function (error) {
+                    $log.error("Error while removing participant", participantId, error);
+                    notificationService.error("Error while removing participant '" + participantId + "' from event");
+                });
+            
         }
     }
 })();

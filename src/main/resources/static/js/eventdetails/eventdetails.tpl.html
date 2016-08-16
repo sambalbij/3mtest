@@ -3,7 +3,7 @@
         <h1>{{vm.event.name}}</h1>
         <p>{{vm.event.description}}</p>
         <div>
-            <span class="label label-default label-participant" ng-repeat="(id,participant) in vm.event.participants">{{participant.name}} <button class="btn btn-sm btn-link"><i class="glyphicon glyphicon-remove"></i></button></span>
+            <span class="label label-default label-participant" ng-repeat="(id,participant) in vm.event.participants">{{participant.name}} <button class="btn btn-sm btn-link" ng-click="vm.remove_participant_from_event(participant.id)"><i class="glyphicon glyphicon-remove"></i></button></span>
             <span><button class="btn btn-link btn-sm btn-participant" ng-click="vm.add_participant(vm.event.id)"><i class="glyphicon glyphicon-plus"></i></button></span>
         </div>
     </div>

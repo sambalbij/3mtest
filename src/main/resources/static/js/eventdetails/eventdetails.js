@@ -34,6 +34,7 @@
         var vm = this;
         vm.obtain_event = obtain_event;
         vm.add_participant = add_participant;
+        vm.remove_participant_from_event = remove_participant_from_event;
 
         vm.event = {};
         vm.eventID = $stateParams.nodeId;
@@ -67,6 +68,13 @@
                 // Nothing to do here
             });
 
+        }
+
+        function remove_participant_from_event(participantID){
+            console.log("remove participant with id "+participantID);
+            eventsservice.remove_participant_from_event(vm.eventID,participantID,function() {
+                obtain_event();
+            });
         }
     }
 })();
