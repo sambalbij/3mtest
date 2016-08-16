@@ -64,9 +64,9 @@
 
         function obtain_event_bill(eventId, callback) {
             $http.get('/event/' + eventId + '/bill')
-                .then(function (results) {
-                    //notificationService.info("Got event bill");
-                    callback();
+                .then(function (result) {
+                    $log.debug("Got bill for event "+eventId);
+                    callback(result.data);
                 }, function (error) {
                     $log.error("Error while obtaining event bill", eventId, error);
                     notificationService.error("Error obtaining bill for event " + eventId);

@@ -14,15 +14,18 @@
         <table class="table">
             <thead>
             <tr>
+                <th>Id</th>
                 <th>Name</th>
-                <th>Id (for test)</th>
-                <th class="text-right">Spendings total</th>
+                <th class="text-right">Paid</th>
+                <th class="text-right">Still to pay</th>
             </tr>
             </thead>
-            <tr ng-repeat="(id,participant) in vm.event.participants">
-                <td>{{participant.name}}</td>
-                <td>{{participant.id}}</td>
-                <td class="text-right">x{{vm.event}}
+            <!-- <tr ng-repeat="participant in vm.event.participants"> <!-- -->
+            <tr ng-repeat = "item in vm.bill.partipantToPays"> <!-- -->
+                <td>{{item.partipant.id}}</td>
+                <td>{{item.participant.name}}</td>
+                <td class="text-right">{{item.payed}}</td>
+                <td class="text-right">{{item.toPay}}
                     <button type="button" class="btn btn-link">
                         <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
@@ -36,6 +39,6 @@
 
     <div  ng-if="expanded" class="row row-eq-height">
         <h2>Specification for person X</h2>
-        <p> Here comes the spec table</p>
+        <p> txt</p>
     </div>
 </div>

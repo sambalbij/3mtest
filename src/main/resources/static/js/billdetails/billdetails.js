@@ -57,6 +57,16 @@
             })
         }
     }
-
-    
 })();
+
+/* separate ObtainBillCtrl??
+(function () {
+    'use strict';
+
+    angular.module('m3test.billdetails')
+        .controller('ObtainEventBillCtrl', ObtainEventBillCtrl);
+    // TODO : Define inject
+    ObtainEventBillCtrl.$inject = [];
+})
+
+    */
