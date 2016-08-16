@@ -35,6 +35,7 @@
         vm.obtain_event = obtain_event;
         vm.add_participant = add_participant;
         vm.remove_participant_from_event = remove_participant_from_event;
+        vm.add_participant_to_activity = add_participant_to_activity;
 
         vm.event = {};
         vm.eventID = $stateParams.nodeId;
@@ -44,11 +45,10 @@
         function obtain_event() {
             eventsservice.obtain_event(vm.eventID, function (event) {
                 vm.event = event;
-                console.log(event);
             });
         }
 
-        function add_participant(eventId) {
+        function add_participant() {
             var opts = {
                 backdrop: true,
                 keyboard: true,
@@ -67,26 +67,43 @@
             }, function () {
                 // Nothing to do here
             });
-
         }
 
         function remove_participant_from_event(participantID){
-            console.log("remove participant with id "+participantID);
             eventsservice.remove_participant_from_event(vm.eventID,participantID,function() {
                 obtain_event();
             });
         }
-    }
-})();
 
-(function () {
-    'use strict';
-    angular.module('m3test.eventdetails')
-        .controller('AddParticipantCtrl', AddParticipantCtrl);
+        function add_participant_to_activity(activityId) {
+            var opts = {
+                backdrop: true,
+                keyboard: true,
+                backdropClick: true,
+                templateUrl: 'js/eventdetails/addparticipanttoactivity.tpl.html',
+                controller: 'AddParticipantToActivityCtrl',
+                controllerAs: 'aptaVm',
+                resolve: {
+                    participants: function() {
+                        return angular.copy(vm.event.participants);
+                    }
+                }
+            };
+            var modalInstance = $uibModal.open(opts);
+            modalInstance.result.then(function (result) {
+                if (result) {
+                    // TODO obtain participantId from result
+                    console.log(result);
+                    eventsservice.add_participant_to_activity(vm.eventID,activityId,result, function() {
+                        console.log("Opgeslagen");
+                        obtain_event();
+                    });
+                }
+            }, function () {
+                // Nothing to do here
+            });
 
-    AddParticipantCtrl.$inject = ['$log'];
-    function AddParticipantCtrl($log) {
-
+        }
     }
 })();
 
@@ -103,6 +120,29 @@
         apVm.participant = {};
 
         apVm.close = close;
+
+        function close(result) {
+            $uibModalInstance.close(result);
+        }
+
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('m3test.eventdetails')
+        .controller('AddParticipantToActivityCtrl', AddParticipantToActivityCtrl);
+
+    AddParticipantToActivityCtrl.$inject = ['$uibModalInstance', 'participants'];
+
+    function AddParticipantToActivityCtrl($uibModalInstance, participants) {
+        var aptaVm = this;
+        aptaVm.participants = participants;
+
+        console.log(aptaVm);
+
+        aptaVm.close = close;
 
         function close(result) {
             $uibModalInstance.close(result);

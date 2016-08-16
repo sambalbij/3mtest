@@ -18,7 +18,8 @@
             store_event: store_event,
             obtain_event: obtain_event,
             add_participant_to_event: add_participant_to_event,
-            remove_participant_from_event:remove_participant_from_event
+            remove_participant_from_event:remove_participant_from_event,
+            add_participant_to_activity: add_participant_to_activity
         };
 
         return service;
@@ -84,6 +85,18 @@
                     notificationService.error("Error while removing participant '" + participantId + "' from event");
                 });
             
+        }
+
+        function add_participant_to_activity(eventId, activityId, participantId, callback) {
+            $http.post('/event/' + eventId + '/activity/'+ activityId + '/participant/'+participantId)
+                .then(function (results) {
+                    notificationService.info("Added new participant '" + participantId + "'to activity");
+                    callback();
+                }, function (error) {
+                    $log.error("Error while adding participant to activity", participantId, error);
+                    notificationService.error("Error while adding participant '" + participantId + "' to activity");
+                });
+
         }
     }
 })();
