@@ -14,9 +14,9 @@
             <p>Activity description</p>
         </div>
     </div>
-    <div class="row items row-eq-height">
+    <div class="row items">
         <div class="col-md-4" ng-repeat="item in activity.items">
-            <div class="item">
+            <div class="fixed_height_cell">
                 <i class="glyphicon glyphicon-user pull-right"></i>
                 <h2>{{item.name}}</h2>
                 <p>{{item.description}}</p>
@@ -24,7 +24,7 @@
         </div>
 
         <div class="col-md-4">
-            <div class="item additem">
+            <div class="fixed_height_cell additem">
                 <button title="Add Event" type="button" class="btn btn-link" aria-label="Centered">
                     <span class="glyphicon glyphicon-plus-sign large-button" aria-hidden="true"></span>
                 </button>

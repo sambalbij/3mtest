@@ -15,7 +15,7 @@ front2:fd3e81
     margin: 20px 0;
 }
 .large-button{
-    font-size:20em;
+    font-size:21em;
     color: #fd3e81;
 }
 .large-button:hover{
@@ -26,35 +26,14 @@ body{
     background-color: #2f2d2e;
     color: #fd3e81;
 }
-.row-eq-height {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display:         flex;
-}
 
-.container {
-    padding-right: 15px;
-    padding-left: 15px;
+.fixed_height_cell {
+    height: 350px;
+    background-color: #41292c;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 1em;
 }
-
-h4 {
-    margin-top: 25px;
-}
-.row {
-    margin-bottom: 20px;
-}
-.row .row {
-    margin-top: 10px;
-    margin-bottom: 0;
-}
-[class*="col-"] {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    background-color: #41292C;
-    margin: 10px;
-}
-
 .btn-custom {
     background-color: #fd3e81;
     color: #2f2d2e;

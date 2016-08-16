@@ -1,13 +1,17 @@
-<div class="row row-eq-height">
-    <div class="col-md-4 text-center box">
-        <button title="Add Event" type="button" class="btn btn-link" aria-label="Centered">
-            <span class="glyphicon glyphicon-plus-sign large-button" aria-hidden="true"></span>
-        </button>
+<div class="row">
+        <div class="col-md-4 text-center">
+            <div class="fixed_height_cell">
+            <button title="Add Event" type="button" class="btn btn-link" aria-label="Centered">
+                <span class="glyphicon glyphicon-plus-sign large-button" aria-hidden="true"></span>
+            </button>
+        </div>
     </div>
-    <div class="col-md-4 box" ng-repeat="the_event in vm.events">
-        <h2>{{the_event.name}}</h2>
-        <p>{{the_event.description}}</p>
-        <p><a href="#/eventdetails/{{the_event.id}}" class="btn btn-default btn-custom">View details &raquo;</a></p>
+        <div class="col-md-4" ng-repeat="the_event in vm.events">
+            <div class="fixed_height_cell">
+            <h2>{{the_event.name}}</h2>
+            <p>{{the_event.description}}</p>
+            <p><a href="#/eventdetails/{{the_event.id}}" class="btn btn-default btn-custom">View details &raquo;</a></p>
+        </div>
     </div>
 </div>
 
