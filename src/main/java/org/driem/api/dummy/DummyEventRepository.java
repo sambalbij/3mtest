@@ -33,9 +33,10 @@ public class DummyEventRepository implements EventRepository {
     }
 
     @Override
-    public void storeEvent(Event event) {
+    public int storeEvent(Event event) {
         events.put(event.getID(),event);
         logger.debug("Stored an event with name {}", event.getName());
+        return event.getID();
     }
 
     @Override

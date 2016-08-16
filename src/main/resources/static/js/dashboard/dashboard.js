@@ -28,8 +28,8 @@
     angular.module('m3test.dashboard')
         .controller('DashboardCtrl', DashboardCtrl);
 
-    DashboardCtrl.$inject = ['$log', 'eventsservice'];
-    function DashboardCtrl($log, eventsservice) {
+    DashboardCtrl.$inject = ['$log', 'eventsservice', '$location'];
+    function DashboardCtrl($log, eventsservice, $location) {
         var vm = this;
         vm.obtain_events = obtain_events;
         vm.create_event = create_event;
@@ -49,8 +49,8 @@
             vm.newEvent.finished = false;
             eventsservice.store_event(vm.newEvent, function (ok, message) {
                 if (ok) {
-                    obtain_events();
                     vm.newEvent = {};
+                    $location.url("/eventdetails/"+message);
                 } else {
                     $log.error("Error while storing event", message);
                 }

@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -31,8 +33,12 @@ public class EventController {
     }
 
     @RequestMapping(method = POST)
-    public void storeEvent(@RequestBody EventOverview eventOverview) {
-        eventService.storeEvent(eventOverview);
+    public Map<String,Object> storeEvent(@RequestBody EventOverview eventOverview) {
+        int id = eventService.storeEvent(eventOverview);
+        Map<String, Object> returnObj = new HashMap<>();
+        returnObj.put("id", id);
+
+        return returnObj;
     }
 
     @RequestMapping(value = "/{id}", method = GET)

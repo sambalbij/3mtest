@@ -37,9 +37,9 @@ public class EventService {
                 .collect(Collectors.toList());
     }
 
-    public void storeEvent(EventOverview eventOverview) {
+    public int storeEvent(EventOverview eventOverview) {
 
-        eventRepository.storeEvent(new Event(eventOverview.getID(),eventOverview.getName(),eventOverview.getDescription(),eventOverview.getFinished()));
+        return eventRepository.storeEvent(new Event(eventOverview.getID(),eventOverview.getName(),eventOverview.getDescription(),eventOverview.getFinished()));
     }
 
     public Event obtainEvent(int id) {

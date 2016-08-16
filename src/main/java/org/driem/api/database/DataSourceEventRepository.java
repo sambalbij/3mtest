@@ -11,20 +11,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
-import javax.sql.rowset.serial.SerialArray;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -36,10 +33,16 @@ public class DataSourceEventRepository implements EventRepository {
     private final JdbcTemplate jdbcTemplate;
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+    private final SimpleJdbcInsert eventsInsert;
+
     @Autowired
     public DataSourceEventRepository(@SuppressWarnings("SpringJavaAutowiringInspection") JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+
+        eventsInsert = new SimpleJdbcInsert(this.jdbcTemplate)
+                .withTableName("events")
+                .usingGeneratedKeyColumns("id");
     }
 
 
@@ -52,13 +55,15 @@ public class DataSourceEventRepository implements EventRepository {
     }
 
     @Override
-    public void storeEvent(Event event) {
-        jdbcTemplate.update(
-                "INSERT INTO events (name, description, finished) VALUES (?,?,?)",
-                event.getName(),
-                event.getDescription(),
-                event.getFinished()
-        );
+    public int storeEvent(Event event) {
+
+        final Map<String, Object> parameters = new HashMap<>();
+        parameters.put("name", event.getName()); // store the String name of employee in the column empName
+        parameters.put("description", event.getDescription()); // store the int (as Integer) of the employee in the column dept
+        parameters.put("finished", event.getFinished()); // store the int (as Integer) of the employee in the column dept
+        final Number key = eventsInsert.executeAndReturnKey(parameters);
+
+        return key.intValue();
     }
 
     @Override

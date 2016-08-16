@@ -5,7 +5,7 @@ import java.util.List;
 public interface EventRepository {
     List<Event> loadAllEvents();
 
-    void storeEvent(Event event);
+    int storeEvent(Event event);
 
     /**
      * Add the provided participant name to the event.

@@ -38,8 +38,8 @@
             // TODO: Think about using broadcasting for error handling
             $http.post('/event', theEvent)
                 .then(function (results) {
-                    $log.debug("Result from postinng new event", results);
-                    callback(true);
+                    $log.debug("Result from posting new event", results);
+                    callback(true, results.data.id);
                 }, function (error) {
                     $log.error("Error while storing event", theEvent, error);
                     notificationService.add("error","Error while storing event");
