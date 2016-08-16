@@ -37,6 +37,7 @@
 
         vm.event = {};
         vm.eventID = $stateParams.nodeId;
+        vm.bill={};
 
         obtain_event();
         obtain_event_bill();
@@ -49,9 +50,13 @@
         }
 
         function obtain_event_bill(){
-            eventsservice.obtain_event_bill(vm.eventID, function(event) {
-                //do something
+            //if I do this it returns 'undefined'. If I remove bill from function (ie. function() instead), it gives an error: bill is undefined.
+            eventsservice.obtain_event_bill(vm.eventID, function(bill) {
+                vm.bill = bill;
+                console.log(bill);
             })
         }
     }
+
+    
 })();
