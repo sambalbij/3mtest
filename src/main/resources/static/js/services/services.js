@@ -70,13 +70,22 @@
 
     function NotificationService($rootScope) {
         var service = {
-            add: add
+            info: info,
+            error: error
         };
 
         return service;
 
-        // Implementations
-        function add(type, message) {
+
+        function info(message) {
+            broadcast("success", message);
+        }
+
+        function error(message) {
+            broadcast("danger", message);
+        }
+
+        function broadcast(type, message) {
             $rootScope.$broadcast('msg:notification', type, message);
         }
     }
