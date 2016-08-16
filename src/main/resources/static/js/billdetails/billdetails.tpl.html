@@ -19,7 +19,7 @@
             </thead>
             <tr ng-repeat="(id,participant) in vm.event.participants">
                 <td>{{participant.name}}</td>
-                <td class="text-right">{{participanttopay.topay}}
+                <td class="text-right">{{participant.id}}
                     <button type="button" class="btn btn-link">
                         <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
                     </button>
@@ -27,5 +27,4 @@
             </tr>
         </table>
     </div>
-    <div class="col-md-6" ngIf
 </div>

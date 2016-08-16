@@ -5,6 +5,7 @@
         'ui.router',
         'm3test.dashboard',
         'm3test.eventdetails',
+        'm3test.billdetails',
         'guiapp.notification'
     ]);
 })();

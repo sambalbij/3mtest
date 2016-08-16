@@ -1,11 +1,9 @@
-/**
- * Created by maarten.van.heek on 16-8-2016.
- */
 (function () {
     'use strict';
     angular.module('m3test.billdetails', [
         'ui.router',
-        'm3test.services'
+        'm3test.services',
+        'ui.bootstrap'
     ]);
 })();
 
@@ -20,7 +18,7 @@
             .state('billdetails', {
                 url: '/billdetails/:nodeId',
                 templateUrl: 'js/billdetails/billdetails.tpl.html',
-                controller: 'billdetailsCtrl',
+                controller: 'BillDetailsCtrl',
                 controllerAs: 'vm'
             });
     }
@@ -29,10 +27,10 @@
 (function () {
     'use strict';
     angular.module('m3test.billdetails')
-        .controller('billdetailsCtrl', billdetailsCtrl);
+        .controller('BillDetailsCtrl', BillDetailsCtrl);
 
-    billdetailsCtrl.$inject = ['$log', 'eventsservice', '$stateParams'];
-    function billdetailsCtrl($log, eventsservice,$stateParams) {
+    BillDetailsCtrl.$inject = ['$log', 'eventsservice', '$stateParams'];
+    function BillDetailsCtrl($log, eventsservice,$stateParams) {
         var vm = this;
         vm.obtain_event = obtain_event;
 
@@ -48,4 +46,4 @@
             });
         }
     }
-})();
+})()
