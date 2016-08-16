@@ -4,7 +4,8 @@
     angular.module('m3testApp', [
         'ui.router',
         'm3test.dashboard',
-        'm3test.eventdetails'
+        'm3test.eventdetails',
+        'guiapp.notification'
     ]);
 })();
 

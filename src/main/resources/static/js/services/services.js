@@ -10,9 +10,9 @@
         .module('m3test.services')
         .factory('eventsservice', EventsService);
 
-    EventsService.$inject = ['$http', '$log'];
+    EventsService.$inject = ['$http', '$log', 'notificationService'];
 
-    function EventsService($http, $log) {
+    function EventsService($http, $log, notificationService) {
         var service = {
             obtain_events: obtain_events,
             store_event: store_event,
@@ -26,8 +26,10 @@
                 .then(function (results) {
                     $log.debug("Obtained events",results);
                     callback(results.data);
+                    notificationService.add("info", "Great now you see all events!");
                 }, function (error) {
                     $log.error("Error while obtaining events", error);
+                    notificationService.add("error", "Oops, could not load all events!");
                     callback([]);
                 });
         }
@@ -40,6 +42,7 @@
                     callback(true);
                 }, function (error) {
                     $log.error("Error while storing event", theEvent, error);
+                    notificationService.add("error","Error while storing event");
                     callback(false, "Error while storing event");
                 });
         }
@@ -53,6 +56,28 @@
                     $log.error("Error while obtaining event with id " + id, error);
                     callback({});
                 })
+        }
+    }
+})();
+
+(function () {
+    'use strict';
+    angular
+        .module('m3test.services')
+        .factory('notificationService', NotificationService);
+
+    NotificationService.$inject = ['$rootScope'];
+
+    function NotificationService($rootScope) {
+        var service = {
+            add: add
+        };
+
+        return service;
+
+        // Implementations
+        function add(type, message) {
+            $rootScope.$broadcast('msg:notification', type, message);
         }
     }
 })();
