@@ -19,7 +19,8 @@
             obtain_event: obtain_event,
             add_participant_to_event: add_participant_to_event,
             remove_participant_from_event:remove_participant_from_event,
-            add_participant_to_activity: add_participant_to_activity
+            add_participant_to_activity: add_participant_to_activity,
+            obtain_event_bill: obtain_event_bill
         };
 
         return service;
@@ -61,6 +62,17 @@
                 })
         }
 
+        function obtain_event_bill(eventId, callback) {
+            $http.get('/event/' + eventId + '/bill')
+                .then(function (results) {
+                    //notificationService.info("Got event bill");
+                    callback();
+                }, function (error) {
+                    $log.error("Error while obtaining event bill", eventId, error);
+                    notificationService.error("Error obtaining bill for event " + eventId);
+                });
+        }
+
         function add_participant_to_event(eventId, participant, callback) {
             $http.post('/event/' + eventId + '/participant', participant)
                 .then(function (results) {
@@ -98,6 +110,7 @@
                 });
 
         }
+
     }
 })();
 
