@@ -60,7 +60,6 @@
         }
 
         function add_participant_to_event(eventId, participant, callback) {
-            participant.id =
             $http.post('/event/' + eventId + '/participant', participant)
                 .then(function (results) {
                     $log.debug("Result from posting new event", results);
