@@ -18,6 +18,16 @@ front2:fd3e81
     font-size:21em;
     color: #fd3e81;
 }
+
+.med-button{
+    font-size:8em;
+    color: #fd3e81;
+}
+
+.med-button:hover{
+    color: #792359;
+}
+
 .large-button:hover{
     color: #792359;
 }
@@ -28,7 +38,7 @@ body{
 }
 
 .fixed_height_cell {
-    height: 350px;
+    height: 200px;
     background-color: #41292c;
     margin-top: 1em;
     margin-bottom: 1em;
