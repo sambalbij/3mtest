@@ -153,7 +153,6 @@
                     $log.error("Error setting activity cost", activityId, error);
                     notificationService.error("Error while setting cost for activity");
                 });
-
         }
 
         function add_participant_to_item(eventId, activityId, itemId, participantId, callback) {
@@ -165,7 +164,6 @@
                     $log.error("Error while adding participant to item", participantId, error);
                     notificationService.error("Error while adding participant '" + participantId + "' to item");
                 });
-
         }
 
         function remove_participant_from_item(eventId, activityId, itemId, participantId, callback){
