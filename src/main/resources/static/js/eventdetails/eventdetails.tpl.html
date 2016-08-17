@@ -53,7 +53,10 @@
 </div>
 
 <div class="row items row-eq-height">
-    <div class="col-md-12 text-right">
-        <button type="button" class="btn btn-info btn-custom" ng-click="vm.add_activity(vm.event.id)">+ Add activity</button>
+    <div class="col-md-12">
+        <button title="Add Activity" type="button" class="btn btn-link" aria-label="Centered" ng-click="vm.add_activity(vm.event.id)">
+            <span class="glyphicon glyphicon-plus-sign large-button"  aria-hidden="true"></span>
+        </button>
+        <span style="font-size: 30px">New Activity</span>
     </div>
 </div>
