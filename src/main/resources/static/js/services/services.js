@@ -17,6 +17,7 @@
             obtain_events: obtain_events,
             store_event: store_event,
             obtain_event: obtain_event,
+            add_activity: add_activity,
             add_participant_to_event: add_participant_to_event,
             remove_participant_from_event:remove_participant_from_event,
             add_participant_to_activity: add_participant_to_activity,
@@ -71,6 +72,18 @@
                 }, function (error) {
                     $log.error("Error while obtaining event bill", eventId, error);
                     notificationService.error("Error obtaining bill for event " + eventId);
+                });
+        }
+
+        function add_activity(eventId, activity, callback ){
+            $http.post('/event/'+eventId+'/activity',activity)
+                .then(function(results){
+                    $log.debug("Added activity to event " + eventId, results);
+                    notificationService.info("Added new activity");
+                    callback();
+                }, function(error){
+                    $log.error("Error while adding activity",activity,error);
+                    notificationService.error("Error while adding activity " + activity.name);
                 });
         }
 

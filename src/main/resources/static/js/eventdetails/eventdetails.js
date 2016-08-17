@@ -34,6 +34,7 @@
         var vm = this;
         vm.obtain_event = obtain_event;
         vm.add_participant = add_participant;
+        vm.add_activity = add_activity;
         vm.remove_participant_from_event = remove_participant_from_event;
         vm.add_participant_to_activity = add_participant_to_activity;
         vm.add_participant_to_item = add_participant_to_item;
@@ -62,6 +63,27 @@
             modalInstance.result.then(function (result) {
                 if (result) {
                     eventsservice.add_participant_to_event(vm.eventID,result, function() {
+                        obtain_event();
+                    });
+                }
+            }, function () {
+                // Nothing to do here
+            });
+        }
+
+        function add_activity() {
+            var opts = {
+                backdrop: true,
+                keyboard: true,
+                backdropClick: true,
+                templateUrl: 'js/eventdetails/addactivity.tpl.html',
+                controller: 'AddActivityCtrl',
+                controllerAs: 'aaVm'
+            };
+            var modalInstance = $uibModal.open(opts);
+            modalInstance.result.then(function (result) {
+                if (result) {
+                    eventsservice.add_activity(vm.eventID,result, function() {
                         obtain_event();
                     });
                 }
@@ -150,6 +172,27 @@
         apVm.participant = {};
 
         apVm.close = close;
+
+        function close(result) {
+            $uibModalInstance.close(result);
+        }
+
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('m3test.eventdetails')
+        .controller('AddActivityCtrl', AddActivityCtrl);
+
+    AddActivityCtrl.$inject = ['$uibModalInstance'];
+
+    function AddActivityCtrl($uibModalInstance) {
+        var aaVm = this;
+        aaVm.activity = {};
+
+        aaVm.close = close;
 
         function close(result) {
             $uibModalInstance.close(result);
