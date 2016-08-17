@@ -34,10 +34,14 @@
         var vm = this;
         vm.obtain_event = obtain_event;
         vm.obtain_event_bill = obtain_event_bill;
+        vm.show_participant_bill = show_participant_bill;
+        vm.hide = hide;
 
         vm.event = {};
+        vm.expanded = false;
         vm.eventID = $stateParams.nodeId;
         vm.bill={};
+        vm.shown_participant = 1;
 
         obtain_event();
         obtain_event_bill();
@@ -55,6 +59,16 @@
                 vm.bill = bill;
                 console.log(bill);
             })
+        }
+
+        function show_participant_bill(participantId){
+            vm.shown_participant = participantId;
+            vm.expanded = true;
+            console.log("show participant "+ participantId);
+        }
+
+        function hide(){
+            vm.expanded = false;
         }
     }
 })();

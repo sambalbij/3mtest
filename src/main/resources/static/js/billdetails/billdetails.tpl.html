@@ -14,7 +14,6 @@
     <!-- First part: grand total per participant-->
     <div class="col-md-6">
         <h2>Participant spendings</h2>
-        <label>Test expand: <input type="checkbox" ng-model="expanded" ng-init="expanded=false" /></label> <!-- -->
         <p>Click arrow to expand</p>
         <table class="table">
             <thead>
@@ -27,15 +26,15 @@
             </tr>
             </thead>
             <!-- <tr ng-repeat="participant in vm.event.participants"> <!-- -->
-            <tr ng-repeat = "item in vm.bill.partipantToPays"> <!-- -->
-                <td>{{item.participant.id}}</td>
-                <td>{{item.participant.name}}</td>
-                <td class="text-right">{{item.payed}}</td>
-                <td class="text-right">{{item.toPay}}</td>
+            <tr ng-repeat = "participantToPay in vm.bill.partipantToPays"> <!-- -->
+                <td>{{participantToPay.participant.id}}</td>
+                <td>{{participantToPay.participant.name}}</td>
+                <td class="text-right">{{participantToPay.payed}}</td>
+                <td class="text-right">{{participantToPay.toPay}}</td>
                 <td>
                     <button type="button" class="btn btn-link">
-                        <span ng-if="!expanded" class="glyphicon glyphicon-triangle-bottom" ng-click="vm.show_participant_bill(vm.event.id)" aria-hidden="true"></span>
-                        <span ng-if="expanded" class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+                        <span ng-if="!vm.expanded||vm.shown_participant!==participantToPay.participant.id" class="glyphicon glyphicon-triangle-bottom" ng-click="vm.show_participant_bill(participantToPay.participant.id)" aria-hidden="true"></span>
+                        <span ng-if="vm.expanded&&vm.shown_participant===participantToPay.participant.id" class="glyphicon glyphicon-triangle-right" ng-click="vm.hide()" aria-hidden="true"></span>
                     </button>
 
                 </td>
@@ -44,9 +43,8 @@
 
     </div>
 
-    <div  ng-if="expanded" class="col col-md-6">
-        <!-- TODO REMOVE HARDCODED ID 1!! -->
-        <h2>Specification for {{vm.bill.partipantToPays[1].participant.name}}</h2>
+    <div  ng-if="vm.expanded" class="col col-md-6">
+        <h2>Specification for {{vm.bill.partipantToPays[vm.shown_participant].participant.name}}</h2>
         <p>Useful description</p>
         <!-- <h3 ng-repeat="billItem in vm.bill.partipantToPays[1]">{{billItem}}</h3> -->
         <table class = "table">
@@ -57,7 +55,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="rep in vm.bill.partipantToPays[1].billItems">
+            <tr ng-repeat="rep in vm.bill.partipantToPays[vm.shown_participant].billItems">
                 <td>{{rep.description}}</td>
                 <td class="text-right">{{rep.cost}}</td>
             </tr>
