@@ -47,7 +47,7 @@
 
             $timeout(function () {
                 delete vm.alerts[id];
-            }, 10000);
+            }, 5000);
         }
     }
 
