@@ -63,3 +63,22 @@ button.btn-participant {
 button.btn-participant:hover {
     color: #792359;
 }
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #2f2d2e;
+    background-color: #fd3e81;
+    /*border-color: #792359;*/
+    border-bottom-color: #ddd;
+}
+
+.nav-tabs>li>a:hover {
+    background-color: #fd3e81;
+}
+
+a {
+    color: #fd3e81;
+}
+
+a:hover {
+    color: #792359;
+}
