@@ -26,18 +26,14 @@
             </tr>
             </thead>
             <!-- <tr ng-repeat="participant in vm.event.participants"> <!-- -->
-            <tr ng-repeat = "participantToPay in vm.bill.partipantToPays"> <!-- -->
+            <tr ng-repeat = "participantToPay in vm.bill.partipantToPays" ng-click="vm.show_participant_bill(participantToPay.participant.id)"> <!-- -->
                 <td>{{participantToPay.participant.id}}</td>
                 <td>{{participantToPay.participant.name}}</td>
                 <td class="text-right">{{participantToPay.payed| currency:"€"}}</td>
                 <td class="text-right">{{participantToPay.toPay| currency:"€"}}</td>
                 <td>
-                    <span ng-if="!vm.expanded||vm.shown_participant!==participantToPay.participant.id"
-                          class="glyphicon glyphicon-triangle-bottom"
-                          ng-click="vm.show_participant_bill(participantToPay.participant.id)"
-                          aria-hidden="true"></span>
-                    <span ng-if="vm.expanded&&vm.shown_participant===participantToPay.participant.id"
-                          class="glyphicon glyphicon-triangle-right" ng-click="vm.hide()" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-triangle-right"
+                          ng-class="vm.expanded&&vm.shown_participant===participantToPay.participant.id ? 'glyphicon-triangle-right' : 'glyphicon-triangle-bottom'" aria-hidden="true"></span>
                 </td>
             </tr>
         </table>
