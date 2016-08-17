@@ -1,0 +1,113 @@
+/*https://coolors.co/2f2d2e-41292c-792359-fd3e81-ff00ae*/
+@background1: #2f2d2e;
+@background2: #41292c;
+@middle: #792359;
+@front1: #ff00ae;
+@front2: #fd3e81;
+
+
+.header{
+  background-color: @front2;
+  color: @background1;
+  margin: 20px 0;
+}
+.header:hover {
+  cursor: pointer;
+}
+.large-button{
+  font-size:10em;
+  color: @front2;
+}
+
+.med-button{
+  font-size:8em;
+  color: @front2;
+}
+
+.med-button:hover{
+  color: @middle;
+}
+
+.large-button:hover{
+  color: @middle;
+}
+
+body{
+  background-color: @background1;
+  color: @front2;
+}
+
+.fixed_height_cell {
+  height: 200px;
+  background-color: @background2;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 1em;
+}
+.btn-custom {
+  background-color: @front2;
+  color: @background1;
+  border-color: @middle;
+}
+
+.btn-custom:hover {
+  background-color: @middle;
+  border-color: @middle;
+}
+
+.label-participant {
+  margin-right: 5px;
+}
+
+.label-participant button {
+  color: white;
+}
+.label-participant button:hover {
+  color: silver;
+}
+
+button.btn-participant {
+  color: @front2;
+}
+
+button.btn-participant:hover {
+  color: @middle;
+}
+
+button.btn-cost {
+  color: @front2;
+}
+
+button.btn-cost:hover {
+  color: @middle;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+  color: @background1;
+  background-color: @front2;
+  /*border-color: @middle;*/
+  border-bottom-color: #ddd;
+}
+
+.nav-tabs>li>a:hover {
+  background-color: @front2;
+}
+
+a {
+  color: @front2;
+}
+
+a:hover {
+  color: @middle;
+}
+
+.notification-bar
+{
+  position: fixed;
+  top: 5px;
+  z-index: 1;
+  left: 20%;
+  width: 60%;
+
+
+}
