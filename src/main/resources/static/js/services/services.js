@@ -20,6 +20,7 @@
             add_participant_to_event: add_participant_to_event,
             remove_participant_from_event:remove_participant_from_event,
             add_participant_to_activity: add_participant_to_activity,
+            add_participant_to_item: add_participant_to_item,
             obtain_event_bill: obtain_event_bill
         };
 
@@ -107,6 +108,18 @@
                 }, function (error) {
                     $log.error("Error while adding participant to activity", participantId, error);
                     notificationService.error("Error while adding participant '" + participantId + "' to activity");
+                });
+
+        }
+
+        function add_participant_to_item(eventId, activityId, itemId, participantId, callback) {
+            $http.post('/event/' + eventId + '/activity/'+ activityId +'/item/' + itemId + '/participant/'+participantId)
+                .then(function (results) {
+                    notificationService.info("Added new participant '" + participantId + "'to item");
+                    callback();
+                }, function (error) {
+                    $log.error("Error while adding participant to item", participantId, error);
+                    notificationService.error("Error while adding participant '" + participantId + "' to item");
                 });
 
         }

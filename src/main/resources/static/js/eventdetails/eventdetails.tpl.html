@@ -16,7 +16,7 @@
             <h2>{{activity.name}}</h2>
             <p>{{activity.description}}</p>
             <span class="label label-default label-participant" ng-repeat="id in activity.participants">{{vm.event.participants[id].name}} <button class="btn btn-sm btn-link" ng-click="vm.remove_participant_from_activity(activity.id, id)"><i class="glyphicon glyphicon-remove"></i></button></span>
-            <span><button class="btn btn-link btn-sm btn-participant" ng-click="vm.add_participant_to_activity(vm.event.id,activity.id)"><i class="glyphicon glyphicon-plus"></i></button></span>
+            <span><button class="btn btn-link btn-sm btn-participant" ng-click="vm.add_participant_to_activity(activity.id)"><i class="glyphicon glyphicon-plus"></i></button></span>
         </div>
     </div>
     <div class="row items">
@@ -26,7 +26,7 @@
                 <h2>{{item.name}}</h2>
                 <p>{{item.description}}</p>
                 <span class="label label-default label-participant" ng-repeat="id in item.participants">{{vm.event.participants[id].name}} <button class="btn btn-sm btn-link" ng-click="vm.remove_participant_from_item(item.id, id)"><i class="glyphicon glyphicon-remove"></i></button></span>
-                <span><button class="btn btn-link btn-sm btn-participant" ng-click="vm.add_participant_to_item(vm.event.id,activity.id, item.id)"><i class="glyphicon glyphicon-plus"></i></button></span>
+                <span><button class="btn btn-link btn-sm btn-participant" ng-click="vm.add_participant_to_item(activity.id, item.id)"><i class="glyphicon glyphicon-plus"></i></button></span>
             </div>
         </div>
 

@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h1>Add Participant to Item</h1>
+</div>
+<div class="modal-body">
+    <form role="form" class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Name of Participant</label>
+            <div class="col-sm-8">
+                <select ng-options="key as value.name for (key, value) in aptiVm.participants" ng-model="aptiVm.participantId"></select>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button ng-click="aptiVm.close(aptiVm.participantId)" class="btn btn-primary">Add</button>
+</div>

@@ -36,6 +36,7 @@
         vm.add_participant = add_participant;
         vm.remove_participant_from_event = remove_participant_from_event;
         vm.add_participant_to_activity = add_participant_to_activity;
+        vm.add_participant_to_item = add_participant_to_item;
 
         vm.event = {};
         vm.eventID = $stateParams.nodeId;
@@ -104,6 +105,35 @@
             });
 
         }
+
+        function add_participant_to_item(activityId, itemId) {
+            var opts = {
+                backdrop: true,
+                keyboard: true,
+                backdropClick: true,
+                templateUrl: 'js/eventdetails/addparticipanttoitem.tpl.html',
+                controller: 'AddParticipantToItemCtrl',
+                controllerAs: 'aptiVm',
+                resolve: {
+                    participants: function() {
+                        return angular.copy(vm.event.participants);
+                    }
+                }
+            };
+            var modalInstance = $uibModal.open(opts);
+            modalInstance.result.then(function (result) {
+                if (result) {
+                    console.log(result);
+                    eventsservice.add_participant_to_item(vm.eventID, activityId, itemId, result, function() {
+                        console.log("Opgeslagen");
+                        obtain_event();
+                    });
+                }
+            }, function () {
+                // Nothing to do here
+            });
+
+        }
     }
 })();
 
@@ -143,6 +173,29 @@
         console.log(aptaVm);
 
         aptaVm.close = close;
+
+        function close(result) {
+            $uibModalInstance.close(result);
+        }
+
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('m3test.eventdetails')
+        .controller('AddParticipantToItemCtrl', AddParticipantToItemCtrl);
+
+    AddParticipantToItemCtrl.$inject = ['$uibModalInstance', 'participants'];
+
+    function AddParticipantToItemCtrl($uibModalInstance, participants) {
+        var aptiVm = this;
+        aptiVm.participants = participants;
+
+        console.log(aptiVm);
+
+        aptiVm.close = close;
 
         function close(result) {
             $uibModalInstance.close(result);
