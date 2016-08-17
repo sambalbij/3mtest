@@ -38,6 +38,7 @@
         vm.remove_participant_from_event = remove_participant_from_event;
         vm.add_participant_to_activity = add_participant_to_activity;
         vm.add_participant_to_item = add_participant_to_item;
+        vm.add_item_to_activity = add_item_to_activity;
 
         vm.event = {};
         vm.eventID = $stateParams.nodeId;
@@ -62,7 +63,7 @@
             var modalInstance = $uibModal.open(opts);
             modalInstance.result.then(function (result) {
                 if (result) {
-                    eventsservice.add_participant_to_event(vm.eventID,result, function() {
+                    eventsservice.add_participant_to_event(vm.eventID, result, function () {
                         obtain_event();
                     });
                 }
@@ -83,7 +84,7 @@
             var modalInstance = $uibModal.open(opts);
             modalInstance.result.then(function (result) {
                 if (result) {
-                    eventsservice.add_activity(vm.eventID,result, function() {
+                    eventsservice.add_activity(vm.eventID, result, function () {
                         obtain_event();
                     });
                 }
@@ -92,8 +93,8 @@
             });
         }
 
-        function remove_participant_from_event(participantID){
-            eventsservice.remove_participant_from_event(vm.eventID,participantID,function() {
+        function remove_participant_from_event(participantID) {
+            eventsservice.remove_participant_from_event(vm.eventID, participantID, function () {
                 obtain_event();
             });
         }
@@ -107,7 +108,7 @@
                 controller: 'AddParticipantToActivityCtrl',
                 controllerAs: 'aptaVm',
                 resolve: {
-                    participants: function() {
+                    participants: function () {
                         return angular.copy(vm.event.participants);
                     }
                 }
@@ -117,7 +118,7 @@
                 if (result) {
                     // TODO obtain participantId from result
                     console.log(result);
-                    eventsservice.add_participant_to_activity(vm.eventID,activityId,result, function() {
+                    eventsservice.add_participant_to_activity(vm.eventID, activityId, result, function () {
                         console.log("Opgeslagen");
                         obtain_event();
                     });
@@ -125,7 +126,6 @@
             }, function () {
                 // Nothing to do here
             });
-
         }
 
         function add_participant_to_item(activityId, itemId) {
@@ -137,7 +137,7 @@
                 controller: 'AddParticipantToItemCtrl',
                 controllerAs: 'aptiVm',
                 resolve: {
-                    participants: function() {
+                    participants: function () {
                         return angular.copy(vm.event.participants);
                     }
                 }
@@ -146,7 +146,7 @@
             modalInstance.result.then(function (result) {
                 if (result) {
                     console.log(result);
-                    eventsservice.add_participant_to_item(vm.eventID, activityId, itemId, result, function() {
+                    eventsservice.add_participant_to_item(vm.eventID, activityId, itemId, result, function () {
                         console.log("Opgeslagen");
                         obtain_event();
                     });
@@ -155,6 +155,28 @@
                 // Nothing to do here
             });
 
+        }
+
+        function add_item_to_activity(activityId) {
+            var opts = {
+                backdrop: true,
+                keyboard: true,
+                backdropClick: true,
+                templateUrl: 'js/eventdetails/additemtoactivity.tpl.html',
+                controller: 'AddItemToActivityCtrl',
+                controllerAs: 'aitaVm'
+            };
+            var modalInstance = $uibModal.open(opts);
+            modalInstance.result.then(function (result) {
+                if (result) {
+                    eventsservice.add_item_to_activity(vm.eventID, activityId, result, function () {
+                        console.log("added item to activity");
+                        obtain_event();
+                    });
+                }
+            }, function () {
+                // Nothing to do here
+            });
         }
     }
 })();
@@ -239,6 +261,29 @@
         console.log(aptiVm);
 
         aptiVm.close = close;
+
+        function close(result) {
+            $uibModalInstance.close(result);
+        }
+
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('m3test.eventdetails')
+        .controller('AddItemToActivityCtrl', AddItemToActivityCtrl);
+
+    AddItemToActivityCtrl.$inject = ['$uibModalInstance'];
+
+    function AddItemToActivityCtrl($uibModalInstance) {
+        var aitaVm = this;
+        aitaVm.item = {};
+
+        console.log(aitaVm);
+
+        aitaVm.close = close;
 
         function close(result) {
             $uibModalInstance.close(result);
