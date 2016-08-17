@@ -29,14 +29,15 @@
             <tr ng-repeat = "participantToPay in vm.bill.partipantToPays"> <!-- -->
                 <td>{{participantToPay.participant.id}}</td>
                 <td>{{participantToPay.participant.name}}</td>
-                <td class="text-right">{{participantToPay.payed}}</td>
-                <td class="text-right">{{participantToPay.toPay}}</td>
+                <td class="text-right">{{participantToPay.payed| currency:"€"}}</td>
+                <td class="text-right">{{participantToPay.toPay| currency:"€"}}</td>
                 <td>
-                    <button type="button" class="btn btn-link">
-                        <span ng-if="!vm.expanded||vm.shown_participant!==participantToPay.participant.id" class="glyphicon glyphicon-triangle-bottom" ng-click="vm.show_participant_bill(participantToPay.participant.id)" aria-hidden="true"></span>
-                        <span ng-if="vm.expanded&&vm.shown_participant===participantToPay.participant.id" class="glyphicon glyphicon-triangle-right" ng-click="vm.hide()" aria-hidden="true"></span>
-                    </button>
-
+                    <span ng-if="!vm.expanded||vm.shown_participant!==participantToPay.participant.id"
+                          class="glyphicon glyphicon-triangle-bottom"
+                          ng-click="vm.show_participant_bill(participantToPay.participant.id)"
+                          aria-hidden="true"></span>
+                    <span ng-if="vm.expanded&&vm.shown_participant===participantToPay.participant.id"
+                          class="glyphicon glyphicon-triangle-right" ng-click="vm.hide()" aria-hidden="true"></span>
                 </td>
             </tr>
         </table>
@@ -57,7 +58,7 @@
             <tbody>
             <tr ng-repeat="rep in vm.bill.partipantToPays[vm.shown_participant].billItems">
                 <td>{{rep.description}}</td>
-                <td class="text-right">{{rep.cost}}</td>
+                <td class="text-right">{{rep.cost| currency:"€"}}</td>
             </tr>
             </tbody>
 
