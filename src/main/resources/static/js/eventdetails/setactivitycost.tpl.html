@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h1>Set Activity Cost</h1>
+</div>
+<div class="modal-body">
+    <form role="form" class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Activity Cost</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="number" ng-model="sacVm.cost.cost"/>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button ng-click="sacVm.close(sacVm.cost)" class="btn btn-primary">Set</button>
+</div>

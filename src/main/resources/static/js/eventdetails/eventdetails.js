@@ -35,6 +35,7 @@
         vm.obtain_event = obtain_event;
         vm.add_participant = add_participant;
         vm.add_activity = add_activity;
+        vm.set_activity_cost = set_activity_cost;
         vm.remove_participant_from_event = remove_participant_from_event;
         vm.add_participant_to_activity = add_participant_to_activity;
         vm.add_participant_to_item = add_participant_to_item;
@@ -87,6 +88,28 @@
             modalInstance.result.then(function (result) {
                 if (result) {
                     eventsservice.add_activity(vm.eventID, result, function () {
+                        obtain_event();
+                    });
+                }
+            }, function () {
+                // Nothing to do here
+            });
+        }
+
+
+        function set_activity_cost(activityId) {
+            var opts = {
+                backdrop: true,
+                keyboard: true,
+                backdropClick: true,
+                templateUrl: 'js/eventdetails/setactivitycost.tpl.html',
+                controller: 'SetActivityCostCtrl',
+                controllerAs: 'sacVm'
+            };
+            var modalInstance = $uibModal.open(opts);
+            modalInstance.result.then(function (result) {
+                if (result) {
+                    eventsservice.set_activity_cost(vm.eventID, activityId,result, function() {
                         obtain_event();
                     });
                 }
@@ -236,6 +259,28 @@
 
     }
 })();
+
+(function () {
+    'use strict';
+
+    angular.module('m3test.eventdetails')
+        .controller('SetActivityCostCtrl', SetActivityCostCtrl);
+
+    SetActivityCostCtrl.$inject = ['$uibModalInstance'];
+
+    function SetActivityCostCtrl($uibModalInstance) {
+        var sacVm = this;
+        sacVm.cost = {cost: 0.0};
+
+        sacVm.close = close;
+
+        function close(result) {
+            $uibModalInstance.close(result);
+        }
+
+    }
+})();
+
 
 (function () {
     'use strict';

@@ -38,6 +38,8 @@ public class Event {
         activities.remove(activityID);
     }
 
+    public void setActivityCost(int activityId,double cost){ activities.get(activityId).setCost(cost);}
+
     public void addParticipantToActivity(int activityID, int participantID) {
         activities.get(activityID).addParticipant(participantID);
     }

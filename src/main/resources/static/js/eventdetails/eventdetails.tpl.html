@@ -19,7 +19,7 @@
         <div class="col-md-12">
             <button class="btn btn-link btn-sm btn-participant pull-right" ng-click="vm.remove_activity_from_event(activity.id)" ><i class="glyphicon glyphicon-trash pull-right"></i></button>
             <h2>{{activity.name}}</h2>
-            <span class="cost">{{activity.cost | currency:"€"}}</span>
+            <span class="cost" >{{activity.cost | currency:"€"}}<button ng-click="vm.set_activity_cost(activity.id)" class="btn btn-sm btn-link btn-cost"><i class="glyphicon glyphicon-pencil"></i></button></span>
             <p>{{activity.description}}</p>
 
             <span class="label label-default label-participant" ng-repeat="id in activity.participants">{{vm.event.participants[id].name}} <button class="btn btn-sm btn-link" ng-click="vm.remove_participant_from_activity(activity.id, id)"><i class="glyphicon glyphicon-remove"></i></button></span>

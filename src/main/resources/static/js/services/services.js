@@ -18,6 +18,7 @@
             store_event: store_event,
             obtain_event: obtain_event,
             add_activity: add_activity,
+            set_activity_cost: set_activity_cost,
             add_participant_to_event: add_participant_to_event,
             remove_participant_from_event:remove_participant_from_event,
             add_participant_to_activity: add_participant_to_activity,
@@ -124,6 +125,21 @@
                 }, function (error) {
                     $log.error("Error while adding participant to activity", participantId, error);
                     notificationService.error("Error while adding participant '" + participantId + "' to activity");
+                });
+
+        }
+
+        function set_activity_cost(eventId, activityId, cost, callback) {
+
+            $http.post('/event/' + eventId + '/activity/'+ activityId + '/cost',cost)
+                .then(function (results) {
+
+                    notificationService.info("Set cost for activity '" + activityId + "' to " + cost.cost);
+                    callback();
+                }, function (error) {
+
+                    $log.error("Error setting activity cost", activityId, error);
+                    notificationService.error("Error while setting cost for activity");
                 });
 
         }

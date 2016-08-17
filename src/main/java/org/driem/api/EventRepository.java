@@ -37,6 +37,7 @@ public interface EventRepository {
 
     void setPayerToActivity(int eventID, int activityID, int payerID);
 
+    void setActivityCost(int eventId, int activityId, double cost);
 
     Event loadEvent(int id);
 }

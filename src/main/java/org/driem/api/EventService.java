@@ -62,6 +62,11 @@ public class EventService {
         eventRepository.removeActivity(eventId, activityId);
     }
 
+    public void setActivityCost(int eventId, int actvityId, double cost)
+    {
+        eventRepository.setActivityCost(eventId,actvityId,cost);
+    }
+
     public void addParticipantToActivity(int eventId, int activityId, int participantId) {
         eventRepository.addParticipantToActivity(eventId, activityId, participantId);
     }

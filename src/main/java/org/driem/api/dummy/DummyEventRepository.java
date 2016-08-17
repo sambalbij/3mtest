@@ -64,6 +64,13 @@ public class DummyEventRepository implements EventRepository {
     }
 
     @Override
+    public void setActivityCost(int eventId,int activityId, double cost)
+    {
+        events.get(eventId).setActivityCost(activityId,cost);
+        logger.debug("Set cost for activity with ID {} to {}", activityId, cost);
+    }
+
+    @Override
     public void addParticipantToActivity(int eventID, int activityID, int participantID) {
         events.get(eventID).addParticipantToActivity(activityID, participantID);
         logger.debug("Added participant with ID {} to activity ID {}", participantID,activityID);

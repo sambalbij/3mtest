@@ -65,13 +65,21 @@ public class EventController {
         eventService.addActivityToEvent(id, activity);
     }
 
+
+
     @RequestMapping(value = "/{eventId}/activity/{activityId}", method = DELETE)
     public void removeActivityFromEvent(@PathVariable int eventId, @PathVariable int activityId) {
         logger.debug("Remove activity with id {} from event with id {}", activityId, eventId);
         eventService.removeActivityFromEvent(eventId, activityId);
     }
 
-    @RequestMapping(value = "/{eventId}/activity/{activityId}/participant/{participantId}", method = POST)
+    @RequestMapping(value = "/{eventId}/activity/{activityId}/cost", method = POST)
+    public void setActivityCost(@PathVariable int eventId, @PathVariable int activityId, @RequestBody CostObj cost) {
+        logger.debug("Set the cost for activity with id {} from event with id {} to {}", activityId, eventId,cost.cost);
+        eventService.setActivityCost(eventId, activityId, cost.cost);
+    }
+
+        @RequestMapping(value = "/{eventId}/activity/{activityId}/participant/{participantId}", method = POST)
     public void addParticipantToActivity(@PathVariable int eventId, @PathVariable int activityId, @PathVariable int participantId) {
         eventService.addParticipantToActivity(eventId, activityId, participantId);
     }

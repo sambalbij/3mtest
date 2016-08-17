@@ -77,6 +77,14 @@ button.btn-participant:hover {
     color: #792359;
 }
 
+button.btn-cost {
+    color: #fd3e81;
+}
+
+button.btn-cost:hover {
+    color: #792359;
+}
+
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
     color: #2f2d2e;
     background-color: #fd3e81;

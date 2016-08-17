@@ -92,6 +92,14 @@ public class DataSourceEventRepository implements EventRepository {
     }
 
     @Override
+    public void setActivityCost(int eventId, int activityId, double cost)
+    {
+        logger.debug("cost" + cost);
+        jdbcTemplate.update("UPDATE activities SET cost=? WHERE id = ?",cost,activityId);
+    }
+
+
+    @Override
     public void removeActivity(int eventID, int activityID) {
         // Find items
         List<Integer> itemList = jdbcTemplate.queryForList("SELECT id FROM items WHERE activity_id = ?",Integer.class,activityID);
