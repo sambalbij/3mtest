@@ -38,7 +38,9 @@
         vm.set_activity_cost = set_activity_cost;
         vm.remove_participant_from_event = remove_participant_from_event;
         vm.add_participant_to_activity = add_participant_to_activity;
+        vm.remove_participant_from_activity = remove_participant_from_activity;
         vm.add_participant_to_item = add_participant_to_item;
+        vm.remove_participant_from_item = remove_participant_from_item;
         vm.remove_activity_from_event = remove_activity_from_event;
         vm.remove_item_from_activity = remove_item_from_activity;
         vm.add_item_to_activity = add_item_to_activity;
@@ -51,27 +53,6 @@
         function obtain_event() {
             eventsservice.obtain_event(vm.eventID, function (event) {
                 vm.event = event;
-            });
-        }
-
-        function add_participant() {
-            var opts = {
-                backdrop: true,
-                keyboard: true,
-                backdropClick: true,
-                templateUrl: 'js/eventdetails/addparticipant.tpl.html',
-                controller: 'AddParticipantCtrl',
-                controllerAs: 'apVm'
-            };
-            var modalInstance = $uibModal.open(opts);
-            modalInstance.result.then(function (result) {
-                if (result) {
-                    eventsservice.add_participant_to_event(vm.eventID, result, function () {
-                        obtain_event();
-                    });
-                }
-            }, function () {
-                // Nothing to do here
             });
         }
 
@@ -96,6 +77,11 @@
             });
         }
 
+        function remove_activity_from_event(activityId) {
+            eventsservice.remove_activity_from_event(vm.eventID, activityId, function () {
+                obtain_event();
+            });
+        }
 
         function set_activity_cost(activityId) {
             var opts = {
@@ -118,8 +104,57 @@
             });
         }
 
-        function remove_participant_from_event(participantID) {
-            eventsservice.remove_participant_from_event(vm.eventID, participantID, function () {
+        function add_item_to_activity(activityId) {
+            var opts = {
+                backdrop: true,
+                keyboard: true,
+                backdropClick: true,
+                templateUrl: 'js/eventdetails/additemtoactivity.tpl.html',
+                controller: 'AddItemToActivityCtrl',
+                controllerAs: 'aitaVm'
+            };
+            var modalInstance = $uibModal.open(opts);
+            modalInstance.result.then(function (result) {
+                if (result) {
+                    eventsservice.add_item_to_activity(vm.eventID, activityId, result, function () {
+                        console.log("added item to activity");
+                        obtain_event();
+                    });
+                }
+            }, function () {
+                // Nothing to do here
+            });
+        }
+
+        function remove_item_from_activity(activityId, itemId) {
+            eventsservice.remove_item_from_activity(vm.eventID, activityId, itemId, function () {
+                obtain_event();
+            });
+        }
+
+        function add_participant() {
+            var opts = {
+                backdrop: true,
+                keyboard: true,
+                backdropClick: true,
+                templateUrl: 'js/eventdetails/addparticipant.tpl.html',
+                controller: 'AddParticipantCtrl',
+                controllerAs: 'apVm'
+            };
+            var modalInstance = $uibModal.open(opts);
+            modalInstance.result.then(function (result) {
+                if (result) {
+                    eventsservice.add_participant_to_event(vm.eventID, result, function () {
+                        obtain_event();
+                    });
+                }
+            }, function () {
+                // Nothing to do here
+            });
+        }
+
+        function remove_participant_from_event(participantId) {
+            eventsservice.remove_participant_from_event(vm.eventID, participantId, function () {
                 obtain_event();
             });
         }
@@ -153,6 +188,12 @@
             });
         }
 
+        function  remove_participant_from_activity(activityId, participantId) {
+            eventsservice.remove_participant_from_activity(vm.eventID, activityId, participantId, function () {
+                obtain_event();
+            });
+        }
+
         function add_participant_to_item(activityId, itemId) {
             var opts = {
                 backdrop: true,
@@ -182,39 +223,12 @@
 
         }
 
-        function remove_activity_from_event(activityId) {
-            eventsservice.remove_activity_from_event(vm.eventID, activityId, function () {
+        function  remove_participant_from_item(activityId, itemId, participantId) {
+            eventsservice.remove_participant_from_item(vm.eventID, activityId, itemId, participantId, function () {
                 obtain_event();
             });
         }
 
-        function remove_item_from_activity(activityId, itemId) {
-            eventsservice.remove_item_from_activity(vm.eventID, activityId, itemId, function () {
-                obtain_event();
-            });
-        }
-
-        function add_item_to_activity(activityId) {
-            var opts = {
-                backdrop: true,
-                keyboard: true,
-                backdropClick: true,
-                templateUrl: 'js/eventdetails/additemtoactivity.tpl.html',
-                controller: 'AddItemToActivityCtrl',
-                controllerAs: 'aitaVm'
-            };
-            var modalInstance = $uibModal.open(opts);
-            modalInstance.result.then(function (result) {
-                if (result) {
-                    eventsservice.add_item_to_activity(vm.eventID, activityId, result, function () {
-                        console.log("added item to activity");
-                        obtain_event();
-                    });
-                }
-            }, function () {
-                // Nothing to do here
-            });
-        }
     }
 })();
 

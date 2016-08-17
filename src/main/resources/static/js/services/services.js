@@ -22,7 +22,9 @@
             add_participant_to_event: add_participant_to_event,
             remove_participant_from_event:remove_participant_from_event,
             add_participant_to_activity: add_participant_to_activity,
+            remove_participant_from_activity: remove_participant_from_activity,
             add_participant_to_item: add_participant_to_item,
+            remove_participant_from_item: remove_participant_from_item,
             obtain_event_bill: obtain_event_bill,
             add_item_to_activity: add_item_to_activity,
             remove_activity_from_event: remove_activity_from_event,
@@ -129,6 +131,16 @@
 
         }
 
+        function remove_participant_from_activity(eventId, activityId, participantId, callback){
+            $http.delete('/event/'+eventId+'/activity/'+activityId+'/participant/'+participantId)
+                .then(function (results) {
+                    callback();
+                }, function (error) {
+                    $log.error("Error while removing participant from activity", participantId, error);
+                    notificationService.error("Error while removing participant '" + participantId + "' from activity");
+                });
+        }
+
         function set_activity_cost(eventId, activityId, cost, callback) {
 
             $http.post('/event/' + eventId + '/activity/'+ activityId + '/cost',cost)
@@ -154,6 +166,16 @@
                     notificationService.error("Error while adding participant '" + participantId + "' to item");
                 });
 
+        }
+
+        function remove_participant_from_item(eventId, activityId, itemId, participantId, callback){
+            $http.delete('/event/'+eventId+'/activity/'+activityId+'/item/'+itemId+'/participant/'+participantId)
+                .then(function (results) {
+                    callback();
+                }, function (error) {
+                    $log.error("Error while removing participant from item", participantId, error);
+                    notificationService.error("Error while removing participant '" + participantId + "' from item");
+                });
         }
 
         function add_item_to_activity(eventId, activityId, item, callback) {
