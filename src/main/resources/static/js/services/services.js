@@ -126,7 +126,11 @@
                     callback();
                 }, function (error) {
                     $log.error("Error while adding participant to activity", participantId, error);
-                    notificationService.error("Error while adding participant '" + participantId + "' to activity");
+                    if (error.status === 400 && error.data.type === 'integrity') {
+                        notificationService.error("Chosen participant is already part of the activity");
+                    } else {
+                        notificationService.error("Error while adding participant '" + participantId + "' to activity");
+                    }
                 });
 
         }
