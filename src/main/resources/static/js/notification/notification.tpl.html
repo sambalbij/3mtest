@@ -1,5 +1,5 @@
 <div class="container" ng-show="vm.alerts">
-    <div class="row" ng-show="vm.alerts">
+    <div class="row  notification-bar vertical-center" ng-show="vm.alerts">
         <div class="alert alert-{{alert.type}}" ng-repeat="alert in vm.alerts">{{alert.message}}</div>
     </div>
 </div>

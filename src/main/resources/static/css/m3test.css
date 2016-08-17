@@ -103,3 +103,14 @@ a {
 a:hover {
     color: #792359;
 }
+
+.notification-bar
+{
+    position: fixed;
+    top: 5px;
+    z-index: 1;
+    left: 20%;
+    width: 60%;
+
+
+}
