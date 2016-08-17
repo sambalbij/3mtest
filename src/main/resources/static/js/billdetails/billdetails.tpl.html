@@ -57,7 +57,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="rep in vm.bill.partipantToPays[vm.shown_participant].billItems">
-                <td>{{rep.description}}</td>
+                <td style="white-space: pre-wrap">{{rep.description}}</td>
                 <td class="text-right">{{rep.cost| currency:"€"}}</td>
             </tr>
             </tbody>

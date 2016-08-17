@@ -32,10 +32,10 @@
                 .then(function (results) {
                     $log.debug("Obtained events",results);
                     callback(results.data);
-                    notificationService.add("info", "Great now you see all events!");
+                    notificationService.info("Great now you see all events!");
                 }, function (error) {
                     $log.error("Error while obtaining events", error);
-                    notificationService.add("error", "Oops, could not load all events!");
+                    notificationService.error("Oops, could not load all events!");
                     callback([]);
                 });
         }

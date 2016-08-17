@@ -121,7 +121,7 @@ public class EventService {
                     continue;
                 }
                 for (int participantID: item.getParticipants()) {
-                    bill.addAmountToParticipantToPay(participantID, + (costItem / itemparticipants),"Item: " + item.getName());
+                    bill.addAmountToParticipantToPay(participantID, + (costItem / itemparticipants),"       Item: " + item.getName());
                 }
                 totalCostActivity-=costItem;
             }
