@@ -38,6 +38,8 @@
         vm.remove_participant_from_event = remove_participant_from_event;
         vm.add_participant_to_activity = add_participant_to_activity;
         vm.add_participant_to_item = add_participant_to_item;
+        vm.remove_activity_from_event = remove_activity_from_event;
+        vm.remove_item_from_activity = remove_item_from_activity;
         vm.add_item_to_activity = add_item_to_activity;
 
         vm.event = {};
@@ -155,6 +157,18 @@
                 // Nothing to do here
             });
 
+        }
+
+        function remove_activity_from_event(activityId) {
+            eventsservice.remove_activity_from_event(vm.eventID, activityId, function () {
+                obtain_event();
+            });
+        }
+
+        function remove_item_from_activity(activityId, itemId) {
+            eventsservice.remove_item_from_activity(vm.eventID, activityId, itemId, function () {
+                obtain_event();
+            });
         }
 
         function add_item_to_activity(activityId) {

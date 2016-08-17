@@ -23,7 +23,9 @@
             add_participant_to_activity: add_participant_to_activity,
             add_participant_to_item: add_participant_to_item,
             obtain_event_bill: obtain_event_bill,
-            add_item_to_activity: add_item_to_activity
+            add_item_to_activity: add_item_to_activity,
+            remove_activity_from_event: remove_activity_from_event,
+            remove_item_from_activity:remove_item_from_activity
         };
 
         return service;
@@ -148,6 +150,31 @@
                     notificationService.error("Error adding item to activity");
                 });
         }
+
+        function remove_activity_from_event(eventId, activityId, callback){
+            $http.delete('/event/'+eventId+'/activity/'+activityId)
+                .then(function (results) {
+                    $log.debug("Result from removing activity", results);
+                    notificationService.info("Removed activity '" + activityId + "'from event");
+                    callback();
+                }, function (error) {
+                    $log.error("Error while removing activity", activityId, error);
+                    notificationService.error("Error while removing activity '" + activityId + "' from event");
+                });
+        }
+
+        function remove_item_from_activity(eventId, activityId, itemId, callback){
+            $http.delete('/event/'+eventId+'/activity/'+activityId+'/item/'+itemId)
+                .then(function (results) {
+                    $log.debug("Result from removing item", results);
+                    notificationService.info("Removed item '" + itemId + "' from activity");
+                    callback();
+                }, function (error) {
+                    $log.error("Error while removing item", activityId, error);
+                    notificationService.error("Error while removing item '" + activityId + "' from activity");
+                });
+        }
+
     }
 })();
 
