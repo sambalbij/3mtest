@@ -6,6 +6,7 @@
         'm3test.dashboard',
         'm3test.eventdetails',
         'm3test.billdetails',
+        'm3test.newevent',
         'guiapp.notification'
     ]);
 })();
