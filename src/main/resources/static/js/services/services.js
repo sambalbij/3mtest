@@ -77,14 +77,14 @@
                     callback(result.data);
                 }, function (error) {
                     $log.error("Error while obtaining event bill", eventId, error);
-                    notificationService.error("Error obtaining bill for event " + eventId);
+                    notificationService.error("Error obtaining bill for event");
                 });
         }
 
         function add_activity(eventId, activity, callback ){
             $http.post('/event/'+eventId+'/activity',activity)
                 .then(function(results){
-                    $log.debug("Added activity to event " + eventId, results);
+                    $log.debug("Added activity to event", results);
                     notificationService.info("Added new activity");
                     callback();
                 }, function(error){
@@ -110,11 +110,11 @@
             $http.delete('/event/'+eventId+'/participant/'+participantId)
                 .then(function (results) {
                     $log.debug("Result from removing participant", results);
-                    notificationService.info("Removed participant '" + participantId + "'from event");
+                    notificationService.info("Removed participant from event");
                     callback();
                 }, function (error) {
                     $log.error("Error while removing participant", participantId, error);
-                    notificationService.error("Error while removing participant '" + participantId + "' from event");
+                    notificationService.error("Error while removing participant from event");
                 });
             
         }
@@ -122,14 +122,14 @@
         function add_participant_to_activity(eventId, activityId, participantId, callback) {
             $http.post('/event/' + eventId + '/activity/'+ activityId + '/participant/'+participantId)
                 .then(function (results) {
-                    notificationService.info("Added new participant '" + participantId + "'to activity");
+                    notificationService.info("Added new participant to activity");
                     callback();
                 }, function (error) {
                     $log.error("Error while adding participant to activity", participantId, error);
                     if (error.status === 400 && error.data.type === 'integrity') {
                         notificationService.error("Chosen participant is already part of the activity");
                     } else {
-                        notificationService.error("Error while adding participant '" + participantId + "' to activity");
+                        notificationService.error("Error while adding participant to activity");
                     }
                 });
 
@@ -141,7 +141,7 @@
                     callback();
                 }, function (error) {
                     $log.error("Error while removing participant from activity", participantId, error);
-                    notificationService.error("Error while removing participant '" + participantId + "' from activity");
+                    notificationService.error("Error while removing participant from activity");
                 });
         }
 
@@ -150,7 +150,7 @@
             $http.post('/event/' + eventId + '/activity/'+ activityId + '/cost',cost)
                 .then(function (results) {
 
-                    notificationService.info("Set cost for activity '" + activityId + "' to " + cost.cost);
+                    notificationService.info("Set cost for activity to " + cost.cost);
                     callback();
                 }, function (error) {
 
@@ -162,11 +162,11 @@
         function add_participant_to_item(eventId, activityId, itemId, participantId, callback) {
             $http.post('/event/' + eventId + '/activity/'+ activityId +'/item/' + itemId + '/participant/'+participantId)
                 .then(function (results) {
-                    notificationService.info("Added new participant '" + participantId + "'to item");
+                    notificationService.info("Added new participant to item");
                     callback();
                 }, function (error) {
                     $log.error("Error while adding participant to item", participantId, error);
-                    notificationService.error("Error while adding participant '" + participantId + "' to item");
+                    notificationService.error("Error while adding participant to item");
                 });
         }
 
@@ -176,14 +176,14 @@
                     callback();
                 }, function (error) {
                     $log.error("Error while removing participant from item", participantId, error);
-                    notificationService.error("Error while removing participant '" + participantId + "' from item");
+                    notificationService.error("Error while removing participant from item");
                 });
         }
 
         function add_item_to_activity(eventId, activityId, item, callback) {
             $http.post('/event/' + eventId + '/activity/'+ activityId +'/item', item)
                 .then(function (results) {
-                    notificationService.info("Added " + item.name + "to activity " + activityId);
+                    notificationService.info("Added " + item.name + "to activity");
                     callback();
                 }, function(error){
                     $log.error("Error adding item " + item.name, item, error);
@@ -195,11 +195,11 @@
             $http.delete('/event/'+eventId+'/activity/'+activityId)
                 .then(function (results) {
                     $log.debug("Result from removing activity", results);
-                    notificationService.info("Removed activity '" + activityId + "'from event");
+                    notificationService.info("Removed activity from event");
                     callback();
                 }, function (error) {
                     $log.error("Error while removing activity", activityId, error);
-                    notificationService.error("Error while removing activity '" + activityId + "' from event");
+                    notificationService.error("Error while removing activity from event");
                 });
         }
 
@@ -207,11 +207,11 @@
             $http.delete('/event/'+eventId+'/activity/'+activityId+'/item/'+itemId)
                 .then(function (results) {
                     $log.debug("Result from removing item", results);
-                    notificationService.info("Removed item '" + itemId + "' from activity");
+                    notificationService.info("Removed item from activity");
                     callback();
                 }, function (error) {
                     $log.error("Error while removing item", activityId, error);
-                    notificationService.error("Error while removing item '" + activityId + "' from activity");
+                    notificationService.error("Error while removing item from activity");
                 });
         }
 
