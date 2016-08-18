@@ -9,7 +9,7 @@ public class Item {
     private double cost;
     private String name;
     private String description;
-    private List<Integer> participants;
+    private List<Integer> participants = new ArrayList<>();
 
     public Item() {
     }
